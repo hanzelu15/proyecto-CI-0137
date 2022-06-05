@@ -19,14 +19,14 @@ function App() {
 
 
   return (
-    <div>
+    <div className=" h-screen">
       <AuthContext.Provider
         value={{
           user,
           dispatch,
         }}
       >
-        <AppRouter />
+        <AppRouter className=""/>
       </AuthContext.Provider>
     </div>
   );

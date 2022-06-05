@@ -14,3 +14,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+ 
+ .main-bg{
+    background: #F2F1F6;
+ }
+
+
+ .fit-content{
+  height: calc(100% - 40px);
+ }

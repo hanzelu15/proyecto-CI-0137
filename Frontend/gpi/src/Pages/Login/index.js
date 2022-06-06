@@ -15,12 +15,12 @@ export const Login = () => {
   const { register, handleSubmit, errors } = useForm();
   return (
     <>
-      <div className="h-full flex flex-col items-center  pt-20">
+      <div className="h-full w-full flex flex-col items-center  pt-20 py-10">
         <div className="mb-10">
-          <img src={logo} className="w-[350px]" alt="Logo GPI" />
+          <img src={logo} className="w-[305px] md:w-[375px]" alt="Logo GPI" />
         </div>
         <h4 className="mb-14 text-5xl">Iniciar Sesion</h4>
-        <form action="" className="w-[375px]">
+        <form action="" className="w-full md:w-[375px] px-1">
           <div className="relative z-0 w-full mb-8 group">
             <input
               type="email"

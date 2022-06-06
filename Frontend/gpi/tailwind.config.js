@@ -8,6 +8,7 @@ module.exports = {
                  100: "#BF6920" 
                 },
         silver: "#F2F1F6",
+        "white-e5": "#E5E5E5"
       },
     },
   },

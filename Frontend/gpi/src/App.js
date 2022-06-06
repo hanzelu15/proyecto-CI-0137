@@ -26,7 +26,7 @@ function App() {
           dispatch,
         }}
       >
-        <AppRouter className=""/>
+        <AppRouter/>
       </AuthContext.Provider>
     </div>
   );

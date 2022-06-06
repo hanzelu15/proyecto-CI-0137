@@ -1,15 +1,11 @@
 //import React from 'react'
 import React, { useContext } from "react";
-import { useForm } from "react-hook-form";
-import { AuthContext } from "../../auth/authContext";
-import { MdPerson, MdOutlineEmail, MdLock } from "react-icons/md";
-import logo from "../../Assets/Imagotipo.jpg";
-import { Link } from "react-router-dom";
+import logo from "../../Assets/Imagotipo.png";
 
 export const Home = () => {
   return (
     <>
-      <div className="h-full flex flex-col justify-items-center items-center  mt-20">
+      <div className=" flex flex-col justify-items-center items-center  pt-20">
         <div className="mb-10">
           <img src={logo} className="w-[350px]" alt="Logo GPI" />
         </div>

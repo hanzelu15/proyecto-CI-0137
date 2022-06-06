@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../auth/authContext";
 import { MdPerson, MdOutlineEmail, MdLock } from "react-icons/md";
-import logo from "../../Assets/Imagotipo.jpg";
+import logo from "../../Assets/Imagotipo.png";
 import { Link } from "react-router-dom";
 
 const items = [

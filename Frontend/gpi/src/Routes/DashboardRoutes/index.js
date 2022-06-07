@@ -4,6 +4,7 @@ import { NavBar } from "../../Components/NavBar/Index";
 import { Home } from "../../Pages/Home";
 import { ProyectsView } from "../../Pages/ProyectsView";
 import { Welcome } from "../../Pages/Welcome";
+import { Perfil } from "../../Pages/Perfil";
 
 export const DashboardRoutes = () => {
   return (
@@ -15,6 +16,7 @@ export const DashboardRoutes = () => {
             <Route path="/" element={<Welcome />} />
             <Route path="home" element={<Home />} />
             <Route path="proyects" element={<ProyectsView />} />
+            <Route path="Perfil" element={<Perfil />} />
           </Routes>
         </div>
       </div>

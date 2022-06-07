@@ -10,58 +10,34 @@ import InfoButtons from '../../Components/InfoButtons/Index';
 
 const items = [
   {
-    name: "Proyecto 1",
+    name: "Fase 1",
     location: "l1",
   },
   {
-    name: "Proyecto 2",
+    name: "Fase 2",
     location: "l2",
   },
   {
-    name: "Proyecto 3",
+    name: "Fase 3",
     location: "l3",
   },
   {
-    name: "Proyecto 4",
+    name: "Fase 4",
     location: "l4",
   },
   {
-    name: "Proyecto 5",
+    name: "PFase 5",
     location: "l5",
   },
   {
-    name: "Proyecto 6",
+    name: "Fase 6",
     location: "l6",
-  },
-  {
-    name: "Proyecto 7",
-    location: "l7",
-  },
-  {
-    name: "Proyecto 8",
-    location: "l8",
-  },
-  {
-    name: "Proyecto 9",
-    location: "l9",
-  },
-  {
-    name: "Proyecto 10",
-    location: "l10",
-  },
-  {
-    name: "Proyecto 11",
-    location: "l11",
-  },
-  {
-    name: "Proyecto 12",
-    location: "l12",
   },
 ];
 
 
 
-export const ProyectsView = () => {
+export const FasesView = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const paginate = pageNumber => setCurrentPage(pageNumber);
   return (
@@ -80,7 +56,7 @@ export const ProyectsView = () => {
         </nav>
         <div class="w-full inline-flex items-center -space-x-px">
             <div class="mb-6 w-3/4 flex justify-start">
-              <p class="text-xs md:text-2xl ">Proyectos</p>
+              <p class="text-xs md:text-2xl font-size: 20px" >Fases</p>
             </div>
             <div class="mb-6 w-1/4 flex justify-end">
               <MdAddCircle className="inline-block mr-1 " size={40} color="orange"/>
@@ -104,4 +80,3 @@ export const ProyectsView = () => {
     </>
   )
 }
-//<p>{currentPage}</p>

@@ -1,6 +1,8 @@
 //import React from 'react'
 import React, { useContext } from "react";
 import logo from "../../Assets/Imagotipo.png";
+import { DashboardRoutes } from "../../Routes/DashboardRoutes";
+
 
 export const Home = () => {
   return (
@@ -12,30 +14,38 @@ export const Home = () => {
         <h4 className="mb-14 text-3xl">Bienvenido (Nombre Usuario)</h4>
         
         <form action="" className="w-[350px]">
+         
           <button
-            className="h-[48px] w-full mb-8 rounded-none bg-dark-blue text-white"
-            onClick={() => {
+            className="h-[48px] w-full mb-8 rounded-md bg-dark-blue text-white"
+            onClick={(e) => {
+              e.preventDefault();
+              window.location.href='/proyects';
             }}
           >
-            Administrar Proyectos
+            Proyectos
           </button>
           <button
             className="h-[48px] w-full mb-8 rounded-none bg-dark-blue text-white"
             onClick={() => {
+             
             }}
           >
             Administrar Usuarios
           </button>
           <button
             className="h-[48px] w-full mb-8 rounded-none bg-dark-blue text-white"
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
+              window.location.href='/Perfil';
             }}
           >
             Perfil
           </button>
           <button
             className="h-[48px] w-full mb-8 rounded-none bg-dark-blue text-white"
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
+              window.location.href='/';
             }}
           >
             Salir

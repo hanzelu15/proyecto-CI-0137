@@ -1,10 +1,12 @@
 //import React from 'react'
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../auth/authContext";
-import { MdPerson, MdOutlineEmail, MdLock } from "react-icons/md";
-import logo from "../../Assets/Imagotipo.png";
+import { MdAddCircle } from "react-icons/md";
 import { Link } from "react-router-dom";
+import Pagination from '../../Components/Pagination/Index';
+import InfoButtons from '../../Components/InfoButtons/Index';
+
 
 const items = [
   {
@@ -39,41 +41,29 @@ const items = [
     name: "Proyecto 8",
     location: "l8",
   },
+  {
+    name: "Proyecto 9",
+    location: "l9",
+  },
+  {
+    name: "Proyecto 10",
+    location: "l10",
+  },
+  {
+    name: "Proyecto 11",
+    location: "l11",
+  },
+  {
+    name: "Proyecto 12",
+    location: "l12",
+  },
 ];
 
 
 
-const paginate = (items, pageSize, pageNumber) => {
-  const total = items.length;
-  const pageItems= items.slice((pageNumber - 1) * pageSize, pageNumber * pageSize);
-  return (
-    <>
-      {
-        pageItems && pageItems.map((i) => {
-          return (
-          <button
-            className="h-[48px] w-full mb-8 rounded-none border-2 bg-white text-gray"
-            onClick={() => {
-            }}
-          >
-            <div class="w-full flex justify-start">
-              {i.name}
-            </div>
-            <div class="w-full flex justify-end">
-              {i.location}
-            </div>
-          </button>
-          );
-        })
-      }
-      
-      
-      
-    </>
-  );
-}
-
 export const ProyectsView = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const paginate = pageNumber => setCurrentPage(pageNumber);
   return (
     <>
     <div className="h-full flex flex-col justify-items-center items-center">
@@ -88,25 +78,30 @@ export const ProyectsView = () => {
             </li>
           </ol>
         </nav>
-        <h4 className="mb-14 text-3xl">Administrar Proyectos</h4>
+        <div class="w-full inline-flex items-center -space-x-px">
+            <div class="mb-6 w-3/4 flex justify-start">
+              <p class="text-xs md:text-2xl">Administrar Proyectos</p>
+            </div>
+            <div class="mb-6 w-1/4 flex justify-end">
+              <MdAddCircle className="inline-block mr-1 " size={40} color="orange"/>
+            </div>
+        </div>
+        <InfoButtons
+          items={items}
+          pageSize={4}
+          pageNumber={currentPage}
+        />
+        <Pagination
+          postsPerPage={4}
+          totalPosts={items.length}
+          paginate={paginate}
+          currentPage={currentPage}
+        />
 
         
-
-        <form action="" className="w-[350px]">
-          {paginate(items, 4, 1)}
-          <nav aria-label="Page navigation example">
-            <ul class="inline-flex -space-x-px">
-              <li>
-                <a href="#" class="py-2 px-3 ml-0 leading-tight text-black bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-white dark:border-black dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Anteriores</a>
-              </li>
-              <li>
-                <a href="#" class="py-2 px-3 ml-0 leading-tight text-black bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-white dark:border-black dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Últimos</a>
-              </li>
-            </ul>
-          </nav>
-        </form>
       </div>
     </div>
     </>
   )
 }
+//<p>{currentPage}</p>

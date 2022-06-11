@@ -9,7 +9,7 @@ import { Perfil } from "../../Pages/Perfil";
 export const DashboardRoutes = () => {
   return (
     <>
-      <div className="h-screen">
+      <div className="h-screen flex flex-col-reverse md:flex-col">
         <NavBar></NavBar>
         <div className="fit-content">
           <Routes>

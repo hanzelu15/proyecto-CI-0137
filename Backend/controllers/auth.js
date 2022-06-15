@@ -1,5 +1,6 @@
 const bcryptjs = require("bcryptjs");
 const { generateJWT } = require("../helpers/jws");
+const user = require("../models/user");
 const User = require("../models/user");
 
 // register
@@ -55,7 +56,7 @@ const loginUser = async (req, res) => {
     return res.status(200).json({
       ok: true,
       token,
-      user
+      user,
     });
   } catch (error) {
     res.status(500).json({
@@ -76,5 +77,21 @@ const renewToken = async (req, res) => {
     token,
   });
 };
+const getUsers = async (req, res) => {
+  const { page, limit } = req.query;
 
-module.exports = { createUser, loginUser, renewToken };
+  const [users, count] = await Promise.all([
+    user
+      .find()
+      .skip(page * limit || 0)
+      .limit(limit || 5),
+      user.count()
+  ]);
+  res.json({
+    ok: true,
+    count,
+    users
+  });
+};
+
+module.exports = { createUser, loginUser, renewToken, getUsers };

@@ -1,6 +1,6 @@
 const bcryptjs = require("bcryptjs");
 const { generateJWT } = require("../helpers/jws");
-const user = require("../models/user");
+
 const User = require("../models/user");
 
 // register
@@ -38,6 +38,7 @@ const loginUser = async (req, res) => {
   let { email, password } = req.body;
 
   try {
+
     let user = await User.findOne({ email });
     if (!user) {
       return res.status(400).json({
@@ -81,11 +82,11 @@ const getUsers = async (req, res) => {
   const { page, limit } = req.query;
 
   const [users, count] = await Promise.all([
-    user
+    User
       .find()
       .skip(page * limit || 0)
       .limit(limit || 5),
-      user.count()
+      User.count()
   ]);
   res.json({
     ok: true,

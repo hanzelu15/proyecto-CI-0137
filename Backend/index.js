@@ -12,7 +12,7 @@ server.listen( process.env.PORT);
 server.use(cors());
 //rutas
 server.use('/api/auth', require('./routes/auth'));
-
+server.use('/api/projects', require('./routes/projects'));
 
 
 server.use(express.static('public'));

@@ -1,0 +1,22 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "Marcos Castro",
+            "email": "marcos@correo.com",
+            "phone": "2222-2222"
+        }, 
+        {
+            "id": 2,
+            "name": "Halsel calderon",
+            "email": "halsel@correo.com",
+            "phone": "4444-4444"
+        }, 
+        {
+            "id": 3,
+            "name": "Jean Carlo Quesada",
+            "email": "jean@correo.com",
+            "phone": "6666-6666"
+        }
+    ]
+}

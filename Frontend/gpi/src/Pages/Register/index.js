@@ -1,92 +1,98 @@
-import React, { useContext } from "react";
+import React, { useRef } from "react";
 import { useForm } from "react-hook-form";
-import { AuthContext } from "../../auth/authContext";
 import { MdPerson, MdOutlineEmail, MdLock } from "react-icons/md";
 import logo from "../../Assets/Imagotipo.png";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-
 
 export const Register = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+  const password = useRef({});
+  password.current = watch("password", "");
+  const onSubmit = (data) => console.log(data);
 
-  const { user } = useContext(AuthContext);
-  let navigate = useNavigate();
-  const handleRegister = ()=>{
-      // validar
-      navigate("/home");
-  }
-
-  const { register, handleSubmit, errors } = useForm();
   return (
     <>
-      <div className="h-full flex flex-col items-center  pt-20">
-        <div className="mb-10">
-          <img src={logo} className="w-[350px]" alt="Logo GPI" />
+      <div className=" flex flex-col items-center  pt-20">
+        <div className="mb-14">
+          <img src={logo} className="w-[300px] md:w-[375px]" alt="Logo GPI" />
         </div>
-        <h4 className="mb-14 text-5xl">Registrarse</h4>
-        <form action="" className="w-[375px]">
-          <div className="relative z-0 w-full mb-8 group">
+        <h4 className="mb-20 text-3xl md:text-4xl">Registrarse</h4>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="w[300px] md:w-[375px]"
+        >
+          {/* NAME */}
+          <div className="relative z-0 w-full mb-14 group">
             <input
-              type="name"
-              name="floating_name"
-              className="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              type="text"
+              name="name"
+              {...register("name", { required: "Debe especificar una nombre", maxLength: 40 })}
+              className="input-text-template peer"
               placeholder=" "
-              required
             />
-            <label
-              for="floating_name"
-              className="flex items-center peer-focus:font-medium absolute text-xl text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-8 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8"
-            >
+            <label className="input-text-label-template">
               <MdPerson className="inline-block mr-1" /> Nombre Completo
             </label>
+            {errors.name && <p className="text-red-500">{errors.name.message}</p>}
           </div>
-          <div className="relative z-0 w-full mb-8 group">
+          {/* EMAIL */}
+          <div className="relative z-0 w-full mb-14 group">
             <input
               type="email"
-              name="floating_email"
-              className="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              name="email"
+              {...register("email", { required: "Debe especificar un correo electrónico" })}
+              className="input-text-template peer"
               placeholder=" "
-              required
             />
-            <label
-              for="floating_email"
-              className="flex items-center peer-focus:font-medium absolute text-xl text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-8 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8"
-            >
+            <label className="input-text-label-template">
               <MdOutlineEmail className="inline-block mr-1" />
               Email
             </label>
+            {errors.email && <p className="text-red-500">{errors.email.message}</p>}
           </div>
-          <div className="relative z-0 w-full mb-8 group">
+          {/* PASSWORD */}
+          <div className="relative z-0 w-full mb-14 group">
             <input
               type="password"
-              name="floating_password"
-              className="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              name="password"
+              {...register("password", {
+                required: "Debe especificar una contraseña",
+                minLength: {
+                  value: 8,
+                  message: "Contraseña debe tener 8 caracteres minimos",
+                },
+              })}
+              className="input-text-template peer"
               placeholder=" "
-              required
             />
-            <label
-              for="floating_password"
-              className="flex items-center peer-focus:font-medium absolute text-xl text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-8 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8"
-            >
+            <label className="input-text-label-template">
               <MdLock className="inline-block mr-1" />
               Password
             </label>
+            {errors.password && <p className="text-red-500">{errors.password.message}</p>}
           </div>
-          <div className="relative z-0 w-full mb-8 group">
+          {/* REPEAT PASSWORD */}
+          <div className="relative z-0 w-full mb-14 group">
             <input
               type="password"
-              name="floating_repeat_password"
-              className="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              name="password_repeat"
+              {...register("password_repeat", {
+                validate: (value) =>
+                  value === password.current || "Las contraseñas no coinciden",
+              })}
+              className="input-text-template peer"
               placeholder=" "
-              required
             />
-            <label
-              for="floating_repeat_password"
-              className="flex items-center peer-focus:font-medium absolute text-xl text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-8 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8"
-            >
+            <label className="input-text-label-template">
               <MdLock className="inline-block mr-1" />
               Repeat Password
             </label>
+            {errors.password_repeat && <p className="text-red-500">{errors.password_repeat.message}</p>}
           </div>
           <div className="flex justify-between  items-center">
             <p className="">
@@ -95,16 +101,11 @@ export const Register = () => {
                 Entrar
               </Link>
             </p>
-            <button
-              type="button"
-              onClick={handleRegister}
-              className="text-white bg-orange-50 hover:bg-orange-100 focus:ring-4 focus:ring-blue-300 font-medium text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-            >
-              Registrar
-            </button>
+
+            <input type="submit" value="Registrarse" className="btn-green" />
           </div>
         </form>
       </div>
     </>
-  )
-}
+  );
+};

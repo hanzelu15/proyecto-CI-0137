@@ -10,7 +10,7 @@ import { DashboardRoutes } from "../DashboardRoutes";
 export const AppRouter = () => {
   return (
     <>
-      <div className="h-screen">
+      <div className="pb-52">
           <Routes>
             <Route path="/" element={<Welcome />} />
             <Route path="login" element={<Login />} />

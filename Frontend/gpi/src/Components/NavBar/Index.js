@@ -2,8 +2,11 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { MdHome, MdExitToApp, MdPerson } from "react-icons/md";
 import icono from "../../Assets/icono.png";
+import { useAuthStore } from "../../hooks";
 
 export const NavBar = () => {
+
+  const { user, startLogout } = useAuthStore();
   return (
     <nav className="px-8 w-6/6 h-[50px] bg-dark-blue overflow-hidden flex items-center justify-between">
       <div className="hidden md:flex items-center">
@@ -28,13 +31,12 @@ export const NavBar = () => {
         <li>
           <NavLink to="home" className="flex items-center mx-9">
             <MdPerson className="text-3xl" />
-            <span className="hidden md:block">Hansel Calderon</span> 
+            <span className="hidden md:block">{user.name}</span> 
           </NavLink>
         </li>
         <li>
-          <NavLink to="/" className="flex items-center">
-            <MdExitToApp className="text-3xl" /> <span className="hidden md:block">Salir</span> 
-          </NavLink>
+          <button className="flex items-center" onClick={ startLogout} ><MdExitToApp className="text-3xl" /> <span className="hidden md:block">Salir</span> </button>
+
         </li>
       </ul>
     </nav>

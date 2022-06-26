@@ -1,21 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { MdOutlineEmail, MdLock } from "react-icons/md";
 import logo from "../../Assets/Imagotipo.png";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useAuthStore } from "../../hooks";
+import Swal from "sweetalert2";
 
 export const Login = () => {
-
+  const { startLogin, errorMessage } = useAuthStore();
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
-  const [wrongPassword, setWrongPassword] = useState(false);
-  const onSubmit = (data) => console.log(data);
+  useEffect(() => {
+    if (errorMessage !== undefined) {
+      Swal.fire("Error en la autenticación", errorMessage, "error");
+    }
+  }, [errorMessage]);
+
+  const onSubmit = (data) => {
+    startLogin(data);
+  };
   return (
     <>
       <div className=" w-full flex flex-col items-center  pt-20">
@@ -33,13 +40,17 @@ export const Login = () => {
               name="email"
               className="input-text-template peer"
               placeholder=" "
-              {...register("email", { required: "Debe especificar una correo" })}
+              {...register("email", {
+                required: "Debe especificar una correo",
+              })}
             />
             <label className="flex items-center peer-focus:font-medium absolute text-xl text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-8 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8">
               <MdOutlineEmail className="inline-block mr-1" />
               Email
             </label>
-            {errors.email && <p className="text-red-500">{errors.email.message}</p>}
+            {errors.email && (
+              <p className="text-red-500">{errors.email.message}</p>
+            )}
           </div>
           <div className="relative z-0 w-full mb-20 group">
             <input
@@ -47,13 +58,17 @@ export const Login = () => {
               name="password"
               className="input-text-template peer"
               placeholder=" "
-              {...register("password", { required: "Debe especificar una contraseña" })}
+              {...register("password", {
+                required: "Debe especificar una contraseña",
+              })}
             />
             <label className="flex items-center peer-focus:font-medium absolute text-xl text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-8 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8">
               <MdLock className="inline-block mr-1" />
               Password
             </label>
-            {errors.password && <p className="text-red-500">{errors.password.message}</p>}
+            {errors.password && (
+              <p className="text-red-500">{errors.password.message}</p>
+            )}
           </div>
 
           <div className="flex justify-between  items-center">
@@ -63,8 +78,7 @@ export const Login = () => {
                 Registrarse
               </Link>
             </p>
-            {wrongPassword && <p className="text-red-500">la nformación que brindo es incorrecta</p>}
-            <input type="submit" value="Registrarse" className="btn-green" />
+            <input type="submit" value="Iniciar sesión" className="btn-green" />
           </div>
         </form>
       </div>

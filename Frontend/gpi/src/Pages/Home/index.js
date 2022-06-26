@@ -1,34 +1,33 @@
-//import React from 'react'
-import React, { useContext } from "react";
+import React from "react";
 import logo from "../../Assets/Imagotipo.png";
-import { DashboardRoutes } from "../../Routes/DashboardRoutes";
-
+import { useAuthStore } from "../../hooks";
 
 export const Home = () => {
+
+  const { startLogout, user } = useAuthStore();
+
+
   return (
     <>
       <div className=" flex flex-col justify-items-center items-center  pt-20">
         <div className="mb-10">
           <img src={logo} className="w-[350px]" alt="Logo GPI" />
         </div>
-        <h4 className="mb-14 text-3xl">Bienvenido (Nombre Usuario)</h4>
-        
+        <h4 className="mb-14 text-3xl">Bienvenido {user.name}</h4>
+
         <form action="" className="w-[350px]">
-         
           <button
             className="h-[48px] w-full mb-8 rounded-md bg-dark-blue text-white"
             onClick={(e) => {
               e.preventDefault();
-              window.location.href='/proyects';
+              window.location.href = "/proyects";
             }}
           >
             Proyectos
           </button>
           <button
             className="h-[48px] w-full mb-8 rounded-none bg-dark-blue text-white"
-            onClick={() => {
-             
-            }}
+            onClick={() => {}}
           >
             Administrar Usuarios
           </button>
@@ -36,22 +35,19 @@ export const Home = () => {
             className="h-[48px] w-full mb-8 rounded-none bg-dark-blue text-white"
             onClick={(e) => {
               e.preventDefault();
-              window.location.href='/Perfil';
+              window.location.href = "/Perfil";
             }}
           >
             Perfil
           </button>
           <button
             className="h-[48px] w-full mb-8 rounded-none bg-dark-blue text-white"
-            onClick={(e) => {
-              e.preventDefault();
-              window.location.href='/';
-            }}
+            onClick={ startLogout}
           >
             Salir
           </button>
         </form>
       </div>
     </>
-  )
-}
+  );
+};

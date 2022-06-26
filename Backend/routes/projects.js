@@ -3,7 +3,6 @@ const { check } = require("express-validator");
 const {
   getAllProjects,
   createProject,
-  readProject,
   updateProject,
   deleteProject,
 } = require("../controllers/projects");
@@ -14,7 +13,6 @@ const { validatePermissions } = require("../middleware/validatePermissions");
 const router = Router();
 
 router.get("/", getAllProjects);
-router.get("/:id", readProject);
 router.post(
   "/new",
   [

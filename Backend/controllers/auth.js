@@ -24,6 +24,7 @@ const createUser = async (req, res) => {
 
     return res.status(201).json({
       ok: true,
+      user,
       token,
     });
   } catch (error) {
@@ -35,11 +36,11 @@ const createUser = async (req, res) => {
 };
 // login
 const loginUser = async (req, res) => {
-  let { email, password } = req.body;
+  const { email, password } = req.body;
 
   try {
 
-    let user = await User.findOne({ email });
+    const  user = await User.findOne({ email });
     if (!user) {
       return res.status(400).json({
         ok: false,
@@ -60,6 +61,7 @@ const loginUser = async (req, res) => {
       user,
     });
   } catch (error) {
+    console.log(error);
     res.status(500).json({
       ok: false,
       msg: "Please contact the administrator",
@@ -71,13 +73,16 @@ const loginUser = async (req, res) => {
 const renewToken = async (req, res) => {
   const { uid, name } = req;
 
+  
   const token = await generateJWT(uid, name);
-
+  let user = await User.findById( uid );
   return res.json({
     ok: true,
+    user,
     token,
   });
 };
+
 const getUsers = async (req, res) => {
   const { page, limit } = req.query;
 

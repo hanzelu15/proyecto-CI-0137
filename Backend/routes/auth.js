@@ -21,7 +21,7 @@ router.post(
   createUser
 );
 
-router.get(
+router.post(
   "/login",
   [
     check("email", "El email es obligatorio").isEmail(),

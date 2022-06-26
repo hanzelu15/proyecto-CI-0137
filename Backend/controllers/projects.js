@@ -23,7 +23,6 @@ const createProject = async (req, res) => {
 
   try {
     const newProject = await project.save();
-
     res.json({
       ok: true,
       newProject,
@@ -35,13 +34,6 @@ const createProject = async (req, res) => {
       msg: "Please contact the administrator",
     });
   }
-};
-
-const readProject = (req, res) => {
-  res.json({
-    ok: true,
-    msg: "getProjects",
-  });
 };
 
 const updateProject = async (req, res) => {
@@ -82,7 +74,6 @@ const deleteProject = async (req, res) => {
 module.exports = {
   getAllProjects,
   createProject,
-  readProject,
   updateProject,
   deleteProject,
 };

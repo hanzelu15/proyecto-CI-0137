@@ -16,6 +16,9 @@ const UserSchema = Schema({
         type: String,
         require: true,
     },
+    verificate:{
+        type: Boolean,
+    },
     phone:{
         type: Number,
         require: false,

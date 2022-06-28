@@ -4,7 +4,8 @@ const ProjectSchema = Schema({
 
     name:{
         type: String,
-        require: true
+        require: true,
+        unique: true
     },
 
     manager:{

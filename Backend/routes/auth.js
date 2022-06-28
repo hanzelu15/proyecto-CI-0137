@@ -32,7 +32,6 @@ router.post(
 );
 
 router.get("/renew", validateJwt,renewToken);
-
 router.get("/users", [validateJwt, validatePermissions],getUsers);
 
 module.exports = router;

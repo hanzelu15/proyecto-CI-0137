@@ -1,12 +1,13 @@
 const Phase = require("../models/Phase");
+const Project = require("../models/Project");
 
-const getPhases = (req, res) => {
+const getPhases = async (req, res) => {
   const { page, limit } = req.query;
   const [phase, count] = await Promise.all([
     Phase.find()
       .skip(page * limit || 0)
       .limit(limit || 5),
-      Phase.count(),
+    Phase.count(),
   ]);
   res.json({
     ok: true,
@@ -14,7 +15,7 @@ const getPhases = (req, res) => {
     phase,
   });
 };
-const createPhase = (req, res) => {
+const createPhase = async (req, res) => {
   const uid = req.uid;
   const phase = new Phase({
     usuario: uid,
@@ -35,34 +36,51 @@ const createPhase = (req, res) => {
     });
   }
 };
+const getPhasesByProject = async (req, res) => {
+  const project = await Project.findById(req.params.idProject);
+  if (project) {
+    const phase = await Phase.find({ project: req.params.idProject });
+    if (!phase) {
+      res.status(400);
+      throw new Error("Phases not found");
+    }
 
-const updatePhase = (req, res) => {
+    res.json({
+      ok: true,
+      phase,
+    });
+  }
+  else{
+    res.status(500).json({
+      ok: false,
+      msg: "Project not found ",
+    });
+  }
+};
+
+const updatePhase = async (req, res) => {
   const phase = await Project.findById(req.params.id);
 
   if (!phase) {
     res.status(400);
-    throw new Error("Goal not found");
+    throw new Error("Phase not found");
   }
 
-  const updatedPhase = await Phase.findByIdAndUpdate(
-    req.params.id,
-    req.body,
-    {
-      new: true,
-    }
-  );
+  const updatedPhase = await Phase.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+  });
   res.json({
     ok: true,
     updatedPhase,
   });
 };
 
-const deletePhase = (req, res) => {
+const deletePhase = async (req, res) => {
   const phase = await Phase.findById(req.params.id);
 
   if (!phase) {
     res.status(400);
-    throw new Error("Goal not found");
+    throw new Error("Phase not found");
   }
   await Phase.findByIdAndDelete(req.params.id);
   res.json({
@@ -72,6 +90,7 @@ const deletePhase = (req, res) => {
 
 module.exports = {
   getPhases,
+  getPhasesByProject,
   createPhase,
   updatePhase,
   deletePhase,

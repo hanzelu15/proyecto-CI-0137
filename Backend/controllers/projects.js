@@ -2,7 +2,7 @@ const Project = require("../models/Project");
 
 const getAllProjects = async (req, res) => {
   const { page, limit } = req.query;
-  const [project, count] = await Promise.all([
+  const [projects, count] = await Promise.all([
     Project.find()
       .skip(page * limit || 0)
       .limit(limit || 5),
@@ -11,7 +11,7 @@ const getAllProjects = async (req, res) => {
   res.json({
     ok: true,
     count,
-    project,
+    projects,
   });
 };
 const createProject = async (req, res) => {
@@ -41,7 +41,7 @@ const updateProject = async (req, res) => {
 
   if (!project) {
     res.status(400);
-    throw new Error("Goal not found");
+    throw new Error("Project not found");
   }
 
   const updatedProject = await Project.findByIdAndUpdate(
@@ -62,11 +62,31 @@ const deleteProject = async (req, res) => {
 
   if (!project) {
     res.status(400);
-    throw new Error("Goal not found");
+    throw new Error("Project not found");
   }
 
   await Project.findByIdAndDelete(req.params.id);
   res.json({
+    ok: true,
+  });
+};
+
+const getProject = async (req, res) => {
+
+  if (req.params.id) {
+    const project = await Project.findById(req.params.id);
+    
+  }
+  if(req.params.name){
+    const project = await Project.findOne({ name: req.params.name});
+  }
+  if (!project) {
+    res.status(400);
+    throw new Error("Project not found");
+  }
+
+  res.json({
+    project,
     ok: true,
   });
 };

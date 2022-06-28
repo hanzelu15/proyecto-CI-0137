@@ -1,95 +1,42 @@
-//import React from 'react'
-import React, { useState } from "react";
-import { MdAddCircle } from "react-icons/md";
-import Pagination from '../../../Components/Pagination/Index';
-import InfoButtons from '../../../Components/InfoButtons/Index';
+import React, { useEffect, useState } from "react";
+import Pagination from "../../../Components/Pagination/Index";
+import { getAllProjects } from "../../../Services/ProjectService";
+import { ProjectCard } from "../../../Components/ProjectCard";
 
-
-const items = [
-  {
-    name: "Proyecto 1",
-    location: "l1",
-  },
-  {
-    name: "Proyecto 2",
-    location: "l2",
-  },
-  {
-    name: "Proyecto 3",
-    location: "l3",
-  },
-  {
-    name: "Proyecto 4",
-    location: "l4",
-  },
-  {
-    name: "Proyecto 5",
-    location: "l5",
-  },
-  {
-    name: "Proyecto 6",
-    location: "l6",
-  },
-  {
-    name: "Proyecto 7",
-    location: "l7",
-  },
-  {
-    name: "Proyecto 8",
-    location: "l8",
-  },
-  {
-    name: "Proyecto 9",
-    location: "l9",
-  },
-  {
-    name: "Proyecto 10",
-    location: "l10",
-  },
-  {
-    name: "Proyecto 11",
-    location: "l11",
-  },
-  {
-    name: "Proyecto 12",
-    location: "l12",
-  },
-];
 
 
 
 export const ProyectsView = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const paginate = pageNumber => setCurrentPage(pageNumber);
+
+  const [loading, setloading] = useState(false);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    getAllProjects().then((resp) => {
+      setData(resp);
+      setloading(true);
+    });
+  }, []);
+
   return (
-    <>
-    <div className="flex flex-col justify-items-center items-center mt-10">
-      <div className="h-full w-1/3 flex flex-col justify-items-center items-center  mt-10">
+  
+      <div className="flex flex-col justify-items-center items-center w-[300px] md:w-[500px] m-auto">
+        <header className="flex justify-between items-center h-20 w-full">
+          <h4 className="text-2xl">Projectos</h4>
+          <button className="btn-green h-fit">Agregar</button>
+        </header>
 
-        <div className="w-full inline-flex items-center -space-x-px">
-            <div className="mb-6 w-3/4 flex justify-start">
-              <p className="text-xs md:text-2xl ">Proyectos</p>
-            </div>
-            <div className="mb-6 w-1/4 flex justify-end">
-              <MdAddCircle className="inline-block mr-1 " size={40} color="orange"/>
-            </div>
-        </div>
-        <InfoButtons
-          items={items}
-          pageSize={8}
-          pageNumber={currentPage}
-        />
-        <Pagination
-          postsPerPage={8}
-          totalPosts={items.length}
-          paginate={paginate}
-          currentPage={currentPage}
-        />
-
-        
+        <section className="w-full flex flex-col gap-5">
+          {loading ? (
+            data.projects.map((project) => <ProjectCard key={project._id} project={project}></ProjectCard>)
+          ) : (
+            <p>Cargando</p>
+          )}
+        </section>
+        <section>
+          <Pagination postsPerPage={5} totalPosts={data.count} setData= {setData} query ={getAllProjects}></Pagination>
+        </section>
       </div>
-    </div>
-    </>
-  )
-}
-//<p>{currentPage}</p>
+    
+  );
+};

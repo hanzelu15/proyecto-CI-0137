@@ -71,25 +71,6 @@ const deleteProject = async (req, res) => {
   });
 };
 
-const getProject = async (req, res) => {
-
-  if (req.params.id) {
-    const project = await Project.findById(req.params.id);
-    
-  }
-  if(req.params.name){
-    const project = await Project.findOne({ name: req.params.name});
-  }
-  if (!project) {
-    res.status(400);
-    throw new Error("Project not found");
-  }
-
-  res.json({
-    project,
-    ok: true,
-  });
-};
 
 module.exports = {
   getAllProjects,

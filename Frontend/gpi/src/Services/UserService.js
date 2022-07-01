@@ -8,3 +8,12 @@ export async function getUserById(id) {
     console.error(error);
   }
 }
+
+export async function updateUserData(data, id) {
+  try {
+    const response = await gpiAPI.patch(`/user/update/${id}`, { data });
+    return true;
+  } catch (error) {
+    console.error(error);
+  }
+}

@@ -17,9 +17,15 @@ export const Register = () => {
   const password = useRef({});
   password.current = watch("password", "");
 
+
+
   const onSubmit = async (data) => {
+
     delete data.password_repeat;
+
     await startRegister(data);
+
+    
     setTimeout(() => {
       if (errorMessage === undefined) {
         Swal.fire(
@@ -30,6 +36,8 @@ export const Register = () => {
       }
     }, 100);
   };
+
+
   useEffect(() => {
     if (errorMessage !== undefined) {
       Swal.fire("Error en la autenticación", errorMessage, "error");
@@ -43,7 +51,9 @@ export const Register = () => {
         </div>
         <h4 className="mb-20 text-3xl md:text-4xl">Registrarse</h4>
         <form
+
           onSubmit={handleSubmit(onSubmit)}
+
           className="w[300px] md:w-[375px]"
         >
           {/* NAME */}
@@ -51,28 +61,44 @@ export const Register = () => {
             <input
               type="text"
               name="name"
+
+
+
               {...register("name", {
-                required: "Debe especificar una nombre",
+                required: "Debe especificar un nombre",
                 maxLength: 40,
               })}
+
+
+
               className="input-text-template peer"
               placeholder=" "
             />
             <label className="input-text-label-template">
               <MdPerson className="inline-block mr-1" /> Nombre Completo
             </label>
+
+
+
             {errors.name && (
               <p className="text-red-500">{errors.name.message}</p>
             )}
+
+
+
           </div>
           {/* EMAIL */}
           <div className="relative z-0 w-full mb-14 group">
             <input
               type="email"
               name="email"
+
+
               {...register("email", {
                 required: "Debe especificar un correo electrónico",
               })}
+
+
               className="input-text-template peer"
               placeholder=" "
             />

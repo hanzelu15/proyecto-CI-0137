@@ -12,7 +12,7 @@ export const PhaseCard = ( {phase} ) => {
             <Link to={`/phase/${phase.name}`}
             state={phase}
 
-            className='bg-white h-20 w-full  flex justify-between items-center shadow-md px-5'>
+            className='bg-white h-20 w-full  flex justify-between items-center shadow-md px-5 hover:bg-gray-200'>
 
                 <h4 className='text-2xl'> {phase.name}</h4>
                 <div className=' h-20 flex flex-col justify-end py-2'>

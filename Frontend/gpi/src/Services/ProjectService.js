@@ -8,3 +8,4 @@ export async function getAllProjects(page = 0, limit = 5) {
     console.error(error);
   }
 }
+

@@ -8,3 +8,12 @@ export async function getPhasesByProject(idProject, page = 0, limit = 5) {
     console.error(error);
   }
 }
+
+export async function createPhase(idPhase, name, location, description) {
+  try {
+    const response = await gpiAPI.post(`/phases/`, { params: { name, location, description } });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}

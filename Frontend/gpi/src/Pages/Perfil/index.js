@@ -1,12 +1,22 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { MdPerson, MdOutlineEmail, MdLock } from "react-icons/md";
+import { useAuthStore } from "../../hooks";
+import { updateUserData } from "../../Services/UserService.js";
 
 export const Perfil = () => {
-  const [user, setUser] = useState({
-    name: "Hansel",
-    email: "Hansel@gmail.com",
-    role: "admin ",
-  });
+
+  const { user } = useAuthStore();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({defaultValues: user});
+  const onSubmit = (data) => {
+    console.log(data);
+    updateUserData(data, user.uid);
+    setIsDisabled(!isDisabled);
+  };
   const [isDisabled, setIsDisabled] = useState(true);
   const saveChanges = (e) => {};
   return (
@@ -19,7 +29,7 @@ export const Perfil = () => {
         >
           Editar
         </button>
-        <form action="" className="w-[375px] flex flex-col">
+        <form className="w-[375px] flex flex-col" onSubmit={handleSubmit(onSubmit)}>
           <div className="flex items-center">
             <label htmlFor="floating_name" className="flex items-center">
               {" "}
@@ -34,6 +44,9 @@ export const Perfil = () => {
               defaultValue={user.name}
               required
               disabled={isDisabled}
+              {...register("name", {
+                required: "Debe especificar una correo",
+              })}
             />
           </div>
           <div className="flex items-center">
@@ -48,13 +61,15 @@ export const Perfil = () => {
               className="block w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none disabled:bg-gray-200 dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               defaultValue={user.email}
+              {...register("email", {
+                required: "Debe especificar una correo",
+              })}
               required
               disabled={isDisabled}
             />
           </div>
           <button
-            type="button"
-            onClick={saveChanges}
+            type="submit"
             className={`${isDisabled ? "hidden" : ""} self-end  text-white bg-orange-50 hover:bg-orange-100 focus:ring-4 focus:ring-blue-300 font-medium text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800`}
           >
             Guardar Cambios
@@ -64,3 +79,4 @@ export const Perfil = () => {
     </>
   );
 };
+

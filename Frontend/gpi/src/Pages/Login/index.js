@@ -21,6 +21,7 @@ export const Login = () => {
   }, [errorMessage]);
 
   const onSubmit = (data) => {
+    console.log(data);
     startLogin(data);
   };
   return (

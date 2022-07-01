@@ -37,6 +37,7 @@ const createProject = async (req, res) => {
 };
 
 const updateProject = async (req, res) => {
+  console.log(req.body);
   const project = await Project.findById(req.params.id);
 
   if (!project) {
@@ -46,7 +47,7 @@ const updateProject = async (req, res) => {
 
   const updatedProject = await Project.findByIdAndUpdate(
     req.params.id,
-    req.body,
+    req.body.data,
     {
       new: true,
     }

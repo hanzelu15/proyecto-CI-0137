@@ -9,3 +9,11 @@ export async function getAllProjects(page = 0, limit = 5) {
   }
 }
 
+export async function updateProject(data) {
+  try {
+    const response = await gpiAPI.patch(`/projects/update/${data._id}`, { data });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}

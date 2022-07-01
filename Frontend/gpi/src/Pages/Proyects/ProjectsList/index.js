@@ -24,7 +24,7 @@ export const ProyectsView = () => {
 
   return (
   
-      <div className="flex flex-col justify-items-center items-center w-[300px] md:w-[500px] m-auto">
+      <div className="flex flex-col justify-items-center items-center responsive-width-component">
         <header className="flex justify-between items-center py-5 w-full ">
           <h4 className="text-2xl md:text-3xl">Proyectos</h4>
           <button className="btn-green h-fit">Agregar</button>

@@ -28,7 +28,7 @@ export const ProjectDetails = () => {
   }, []);
 
   return (
-    <div className="flex flex-col justify-items-center items-center w-[300px] md:w-[500px] m-auto">
+    <div className="flex flex-col justify-items-center items-center responsive-width-component">
       <ProjectInfo project={project} managers={managers}></ProjectInfo>
       <section className="w-full flex flex-col gap-5">
         <div className="flex w-full  justify-between">

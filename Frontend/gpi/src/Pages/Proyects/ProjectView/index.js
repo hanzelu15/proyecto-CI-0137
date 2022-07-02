@@ -20,7 +20,7 @@ export const ProjectDetails = () => {
         setData(resp);
         setloading(false);
       })
-      .then(
+      .then( 
         getUserById(project.manager).then((resp) => {
           setManagers(resp.user);
         })
@@ -36,7 +36,7 @@ export const ProjectDetails = () => {
           <button className="btn-green h-fit">Agregar Fase</button>
         </div>
         {!loading ? (
-          data.phase.map((phase) => (
+          data.phases.map((phase) => (
             <PhaseCard key={phase._id} phase={phase}></PhaseCard>
           ))
         ) : (

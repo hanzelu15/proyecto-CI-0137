@@ -18,3 +18,11 @@ export async function updateUserData(data, id) {
     console.error(error);
   }
 }
+export async function getUsersByRole(role) {
+  try {
+    const response = await gpiAPI.get(`/user/userlist/${role}`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}

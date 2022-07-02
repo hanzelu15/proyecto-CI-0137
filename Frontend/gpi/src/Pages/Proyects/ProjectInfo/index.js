@@ -30,7 +30,6 @@ export const ProjectInfo = ({ project, managers }) => {
     });
   };
   const handleEdit = async () => {
-    console.log(watchAllFields);
     const response = await updateProject(watchAllFields);
     setIsEditable(!isEditable);
     if (response.ok) {

@@ -16,8 +16,10 @@ const getPhases = async (req, res) => {
   });
 };
 const createPhase = async (req, res) => {
-  const uid = req.uid;
-  console.log(req.name);
+  console.log("En create phase");
+  console.log(req.body);
+  const uid = req.body.uid;
+  console.log(req.body.name);
   const phase = new Phase({
     usuario: uid,
     ...req.body,

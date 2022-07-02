@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const bcryptjs = require("bcryptjs");
 
 const getUserById = async (req, res) => {
   let user = await User.findById(req.params.id);
@@ -9,10 +10,12 @@ const getUserById = async (req, res) => {
 };
 //Update user 
 const updateUserData = async (req, res) => {
-  //const data = req.query;
-  console.log("En controller.");
-  console.log(req.body);
-  console.log(req.params);
+  if(req.body.data.password !== undefined){
+    let pass = req.body.data.password;
+    req.body.data.password = bcryptjs.hashSync(pass, 8);
+  } else {
+    console.log("Password undefined");
+  }
   const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body.data);
   //console.log(req.params);
   res.json({

@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { createPhase } from "../../../Services/PhaseService";
+import Swal from "sweetalert2";
 
 export const CreatePhase = () => {
   const {
@@ -10,8 +11,27 @@ export const CreatePhase = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data.name + data.location + data.description);
-    createPhase(data.name, data.location, data.description);
+    console.log(data);
+    let responseValue = createPhase(data);
+    setTimeout(() => {
+      if (responseValue) {
+        Swal.fire(
+          {
+            icon: 'success',
+            title: 'Bien!',
+            text: 'Actualización de datos exitosa!',
+          }
+        );
+      } else {
+        Swal.fire(
+          {
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Actualización de datos fallida!',
+          }
+        );
+      }
+    }, 100);
   };
 
   return (

@@ -10,4 +10,5 @@ const { validateFields } = require("../middleware/validateFields");
 const router = Router();
 router.get("/:id",validateJwt, getUserById);
 router.patch("/update/:id",validateJwt, updateUserData);
+router.patch("/update-password/:id",validateJwt, updateUserData);
 module.exports = router;

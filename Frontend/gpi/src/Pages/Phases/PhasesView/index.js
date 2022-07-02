@@ -37,7 +37,7 @@ const items = [
 
 
 
-export const FasesView = () => {
+export const PhasesView = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const paginate = pageNumber => setCurrentPage(pageNumber);
   return (

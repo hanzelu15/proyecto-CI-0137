@@ -25,7 +25,7 @@ export const DashboardRoutes = () => {
             <Route path="new-project" element={<CreateProject />} />
             <Route path="project/:name" element={<ProjectDetails />} />
             <Route path="perfil" element={<Perfil />} />
-            <Route path="phases" element={<ProyectsView />} />
+            <Route path="phases" element={<PhasesView />} />
             <Route path="new-phase" element={<CreatePhase />} />
           </Routes>
         </div>

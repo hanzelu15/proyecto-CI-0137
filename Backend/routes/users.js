@@ -7,7 +7,9 @@ const {
 const { validateJwt } = require("../middleware/validateJwt");
 
 const router = Router();
+
 router.get("/userlist/:role", usersByRole);
 router.get("/:id", validateJwt, getUserById);
 router.patch("/update/:id", validateJwt, updateUserData);
+router.patch("/update-password/:id",validateJwt, updateUserData);
 module.exports = router;

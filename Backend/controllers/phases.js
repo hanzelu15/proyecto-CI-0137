@@ -40,15 +40,15 @@ const createPhase = async (req, res) => {
 const getPhasesByProject = async (req, res) => {
   const project = await Project.findById(req.params.idProject);
   if (project) {
-    const phase = await Phase.find({ project: req.params.idProject });
-    if (!phase) {
+    const phases = await Phase.find({ project: req.params.idProject });
+    if (!phases) {
       res.status(400);
       throw new Error("Phases not found");
     }
 
     res.json({
       ok: true,
-      phase,
+      phases,
     });
   }
   else{

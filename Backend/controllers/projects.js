@@ -15,17 +15,14 @@ const getAllProjects = async (req, res) => {
   });
 };
 const createProject = async (req, res) => {
-  const uid = req.uid;
-  const project = new Project({
-    usuario: uid,
-    ...req.body,
-  });
+
 
   try {
-    const newProject = await project.save();
+    const project = new Project(req.body);
+    await project.save();
     res.json({
       ok: true,
-      newProject,
+      project,
     });
   } catch (error) {
     console.log(error);
@@ -71,7 +68,6 @@ const deleteProject = async (req, res) => {
     ok: true,
   });
 };
-
 
 module.exports = {
   getAllProjects,

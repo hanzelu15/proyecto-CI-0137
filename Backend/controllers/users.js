@@ -7,17 +7,28 @@ const getUserById = async (req, res) => {
     user,
   });
 };
-//Update user 
+//Update user
 const updateUserData = async (req, res) => {
-  //const data = req.query;
-  console.log("En controller.");
-  console.log(req.body);
-  console.log(req.params);
-  const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body.data);
-  //console.log(req.params);
+  const updatedUser = await User.findByIdAndUpdate(
+    req.params.id,
+    req.body.data
+  );
+
   res.json({
     ok: true,
     updatedUser,
   });
 };
-module.exports = { getUserById, updateUserData };
+
+const usersByRole = async (req, res) => {
+  if (req.params.role === "ALL" || req.params.role == undefined) {
+    users = await User.find();
+  } else {
+    users = await User.find({ role: req.params.role });
+  }
+  return res.json({
+    ok: true,
+    users,
+  });
+};
+module.exports = { getUserById, updateUserData,usersByRole};

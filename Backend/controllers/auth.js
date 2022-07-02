@@ -16,7 +16,7 @@ const createUser = async (req, res) => {
         msg: "Email already exist",
       });
     }
-    if (!req.body.role) userJSON = { ...userJSON, role: "Inspector" };
+    if (!req.body.role) userJSON = { ...userJSON, role: "INSPECTOR" };
     userJSON.password = bcryptjs.hashSync(req.body.password, 8);
     const user = new User(userJSON);
     await user.save();

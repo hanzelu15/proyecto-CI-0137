@@ -2,46 +2,40 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { createPhase } from "../../../Services/PhaseService";
 import Swal from "sweetalert2";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export const CreatePhase = () => {
+  let navigate = useNavigate();
+  const location = useLocation();
+  const project = location.state;
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-    let responseValue = createPhase(data);
-    setTimeout(() => {
-      if (responseValue) {
-        Swal.fire(
-          {
-            icon: 'success',
-            title: 'Bien!',
-            text: 'Actualización de datos exitosa!',
-          }
-        );
-      } else {
-        Swal.fire(
-          {
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Actualización de datos fallida!',
-          }
-        );
-      }
-    }, 100);
-  };
 
+
+  const onSubmit = async (data) => {
+    const newPhase = {
+      ...data,
+      project: project._id,
+    };
+    const response = await createPhase(newPhase);
+    if (response.ok) {
+      Swal.fire("Exito!", "Se ha agregado la fase!", "success");
+       return navigate(-1);
+    }
+    
+    return Swal.fire("Ups!", "No se pudo crear la fase!", "error");
+  };
   return (
     <>
-      <div className="h-full flex flex-col items-center  pt-20">
-        <h4 className="mb-14 text-3xl md:text-4xl">Agregar Fase</h4>
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="w-[375px] lg:w-[600px] h-[500px] flex flex-col justify-between"
-        >
+      <div className="flex flex-col justify-items-center items-center responsive-width-component">
+        <h4 className="mb-14 text-3xl md:text-4xl">
+          Agregar Fase para {project.name}
+        </h4>
+        <form onSubmit={handleSubmit(onSubmit)} className="w-full">
           <div className="relative z-0 w-full mb-14 group">
             <input
               type="name"

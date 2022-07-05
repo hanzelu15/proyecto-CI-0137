@@ -18,7 +18,6 @@ export const CreateProject = () => {
   useEffect(() => {
     getUsersByRole("ADMIN").then((data) => {
       setManagers(data.users);
-      console.log(managers);
       setLoading(false);
     });
   }, []);

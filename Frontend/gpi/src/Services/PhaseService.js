@@ -11,8 +11,8 @@ export async function getPhasesByProject(idProject, page = 0, limit = 5) {
 
 export async function createPhase(data) {
   try {
-    const response = await gpiAPI.post(`/phases/`, { data });
-    return response.data.ok;
+    const response = await gpiAPI.post(`/phases/`,  data );
+    return response.data;
   } catch (error) {
     console.error(error);
   }

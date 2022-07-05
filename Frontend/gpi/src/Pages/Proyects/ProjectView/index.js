@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import Pagination from "../../../Components/Pagination/Index.js";
 import { PhaseCard } from "../../../Components/PhaseCard.js/index.js";
@@ -8,32 +8,33 @@ import { getPhasesByProject } from "../../../Services/PhaseService";
 import { getUserById } from "../../../Services/UserService.js";
 import { ProjectInfo } from "../ProjectInfo/index.js";
 
-export const ProjectDetails = () => {
+export const ProjectView = () => {
   const [loading, setloading] = useState(true);
   const [data, setData] = useState([]);
   const location = useLocation();
   const project = location.state;
-  const [managers, setManagers] = useState([]);
+  const [manager, setManager] = useState([]);
   useEffect(() => {
     getPhasesByProject(project._id)
       .then((resp) => {
         setData(resp);
         setloading(false);
       })
-      .then( 
+      .then(
         getUserById(project.manager).then((resp) => {
-          setManagers(resp.user);
+          setManager(resp.user);
         })
       );
   }, []);
 
   return (
     <div className="flex flex-col justify-items-center items-center responsive-width-component">
-      <ProjectInfo project={project} managers={managers}></ProjectInfo>
+      <ProjectInfo project={project} manager={manager}></ProjectInfo>
       <section className="w-full flex flex-col gap-5">
         <div className="flex w-full  justify-between">
           <h4 className="text-3xl">Fases:</h4>
-          <button className="btn-green h-fit">Agregar Fase</button>
+          <Link to={`/new-phase/${project.name}`} state={project} className="btn-green h-fit">Agregar una nueva fase</Link>
+          
         </div>
         {!loading ? (
           data.phases.map((phase) => (

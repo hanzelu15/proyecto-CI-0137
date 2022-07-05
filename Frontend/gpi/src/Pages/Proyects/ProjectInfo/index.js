@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { MdDelete, MdModeEdit, MdSave } from "react-icons/md";
 import Swal from "sweetalert2";
 import { updateProject } from "../../../Services/ProjectService";
+import { getUsersByRole } from "../../../Services/UserService";
 
-export const ProjectInfo = ({ project, managers }) => {
+export const ProjectInfo = ({ project, manager }) => {
   const [isEditable, setIsEditable] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [managers, setManagers] = useState([]);
+  useEffect(() => {
+    getUsersByRole("ADMIN").then((data) => {
+      setManagers(data.users);
+      setLoading(false);
+    });
+  }, []);
   const {
     register,
     handleSubmit,
@@ -97,13 +106,23 @@ export const ProjectInfo = ({ project, managers }) => {
           </div>
           <div className="flex flex-col md:flex-row w-full justify-between mb-5">
             <span className="font-semibold">Manager(s):</span>{" "}
-            <input
-              className="text-right"
-              type="text"
-              defaultValue={managers.name}
+  
+              <select
               disabled={!isEditable}
-            />
-          </div>
+              className="text-right disabled:bg-transparent disabled:appearance-none"
+                {...register("manager", {
+                  required: "Debe especificar una Encargado",
+                })}
+              >
+                <option defaultValue={true} value={manager.uid}> {manager.name}</option>
+                {!loading && managers.map((data) => (
+                  <option value={data.uid} key={data.uid}>
+                    {data.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+       
           <div className="flex w-full flex-col justify-between mb-5 h-36">
             <span className="font-semibold mb-3">Descripción:</span>{" "}
             <textarea

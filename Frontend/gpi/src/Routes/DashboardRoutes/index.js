@@ -5,7 +5,7 @@ import { Home } from "../../Pages/Home";
 import { ProyectsView } from "../../Pages/Proyects/ProjectsList";
 import { Perfil } from "../../Pages/Perfil";
 import { CreateProject } from "../../Pages/Proyects/CreateProject/";
-import { ProjectDetails } from "../../Pages/Proyects/ProjectView";
+import { ProjectView } from "../../Pages/Proyects/ProjectView";
 import { PhasesView } from "../../Pages/Phases/PhasesView";
 import { CreatePhase } from "../../Pages/Phases/CreatePhase";
 
@@ -23,10 +23,10 @@ export const DashboardRoutes = () => {
             <Route path="home" element={<Home />} />
             <Route path="proyects" element={<ProyectsView />} />
             <Route path="new-project" element={<CreateProject />} />
-            <Route path="project/:name" element={<ProjectDetails />} />
+            <Route path="project/:name" element={<ProjectView />} />
+            <Route path="phase/:name" element={<PhasesView />} />
             <Route path="perfil" element={<Perfil />} />
-            <Route path="phases" element={<PhasesView />} />
-            <Route path="new-phase" element={<CreatePhase />} />
+            <Route path="new-phase/:project" element={<CreatePhase />} />
           </Routes>
         </div>
       </div>

@@ -15,12 +15,18 @@ const getAllProjects = async (req, res) => {
   });
 };
 const createProject = async (req, res) => {
-
-
   try {
     const project = new Project(req.body);
+    const exists = await Project.exists({ name: req.body.name });
+    if (exists) {
+      return res.json({
+        ok: false,
+        msg: "Project Already exist",
+      });
+    }
+
     await project.save();
-    res.json({
+    return res.json({
       ok: true,
       project,
     });
@@ -34,7 +40,6 @@ const createProject = async (req, res) => {
 };
 
 const updateProject = async (req, res) => {
-  console.log(req.body);
   const project = await Project.findById(req.params.id);
 
   if (!project) {

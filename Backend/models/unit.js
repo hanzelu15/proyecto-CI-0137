@@ -17,15 +17,12 @@ const UnitSchema = Schema({
     },
     finished:{
         type: Boolean,
-        require: true
     },
     delivered:{
         type: Boolean,
-        require: true
     },
     description:{
         type: String,
-        require: true
     },
     files: {
         fileOne: { type: String},

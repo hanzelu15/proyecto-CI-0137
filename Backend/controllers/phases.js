@@ -15,11 +15,32 @@ const getPhases = async (req, res) => {
     phase,
   });
 };
+const getPhasesByProject = async (req, res) => {
+  const project = await Project.findById(req.params.idProject);
+  if (project) {
+    const { page, limit } = req.query;
+    const [phases, count] = await Promise.all([
+      Phase.find({ project: req.params.idProject })
+        .skip(page * limit || 0)
+        .limit(limit || 5),
+      Phase.count(),
+    ]);
+    res.json({
+      ok: true,
+      count,
+      phases,
+    });
+  } else {
+    res.status(500).json({
+      ok: false,
+      msg: "Project not found ",
+    });
+  }
+};
 const createPhase = async (req, res) => {
-  console.log("En create phase");
   console.log(req.body);
   const uid = req.body.uid;
-  console.log(req.body.name);
+
   const phase = new Phase({
     usuario: uid,
     ...req.body,
@@ -36,27 +57,6 @@ const createPhase = async (req, res) => {
     res.status(500).json({
       ok: false,
       msg: "Please contact the administrator",
-    });
-  }
-};
-const getPhasesByProject = async (req, res) => {
-  const project = await Project.findById(req.params.idProject);
-  if (project) {
-    const phases = await Phase.find({ project: req.params.idProject });
-    if (!phases) {
-      res.status(400);
-      throw new Error("Phases not found");
-    }
-
-    res.json({
-      ok: true,
-      phases,
-    });
-  }
-  else{
-    res.status(500).json({
-      ok: false,
-      msg: "Project not found ",
     });
   }
 };

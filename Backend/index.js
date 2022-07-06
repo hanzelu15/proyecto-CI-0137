@@ -1,12 +1,11 @@
-
-const { v4: uuidv4 } = require('uuid');
+const { v4: uuidv4 } = require("uuid");
 const express = require("express");
 const aws = require("aws-sdk");
 const multer = require("multer");
 const multerS3 = require("multer-s3");
 const { dbConnection } = require("./database/config");
 const cors = require("cors");
-const path = require('path')
+const path = require("path");
 require("dotenv").config();
 
 aws.config.update({
@@ -23,7 +22,15 @@ const upload = multer({
     acl: "public-read",
     bucket: "ci0137",
     key: function (req, file, cb) {
-      cb(null, `gpi/${path.basename(file.originalname,path.extname(file.originalname)) +"-"+ uuidv4() + path.extname(file.originalname)}`);
+      cb(
+        null,
+        `gpi/${
+          path.basename(file.originalname, path.extname(file.originalname)) +
+          "-" +
+          uuidv4() +
+          path.extname(file.originalname)
+        }`
+      );
     },
   }),
 });
@@ -38,7 +45,10 @@ server.use(cors());
 server.use("/api/auth", require("./routes/auth"));
 server.use("/api/projects", require("./routes/projects"));
 server.use("/api/phases", require("./routes/phases"));
+server.use("/api/units", require("./routes/units"));
 server.use("/api/user", require("./routes/users"));
+
+
 const uploadMultiple = upload.fields([{ name: "file", maxCount: 5 }]);
 server.post("/upload", uploadMultiple, function (req, res) {
   const files = req.files.file;

@@ -6,8 +6,9 @@ const validatePermissions = async (req = request, res, next) => {
   try {
     const uid = req.uid;
     const user = await User.findById(uid);
-
-    if(!user.role == 'ADMIN') {
+    console.log(user);
+    if(user.role !== 'ADMIN') {
+      console.log("entro");
         return res.status(401).json({
             error: true,
             message: "The user does not have permissions to access this path",

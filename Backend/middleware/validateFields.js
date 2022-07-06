@@ -1,15 +1,15 @@
-const { response } = require("express");
-const { validationResult } = require("express-validator");
-
-const validateFields = (req, res = response, next)=>{
-    const errors = validationResult(req);
-    if(!errors.isEmpty()){
-        return res.status(400).json({
-            ok: false,
-            errors: errors.mapped()
-        });
+exports.validateSchema = (validSchema) => {
+    return (req, res, next) => {
+        const userPayload = req.body;
+        const validationResult = validSchema.validate(userPayload);
+        if (validationResult.error) {
+            res.status(422).json({
+                body: userPayload,
+                error: validationResult.error.message,
+            });
+        }
+        else {
+            next();
+        }
     }
-    next();
-};
-
-module.exports = { validateFields }
+}

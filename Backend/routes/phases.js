@@ -7,12 +7,16 @@ const {
   deletePhase,
   getPhasesByProject,
 } = require("../controllers/phases");
+const { validateSchema } = require("../middleware/validateFields");
+const { validateJwt } = require("../middleware/validateJwt");
+const { validatePermissions } = require("../middleware/validatePermissions");
+const { createPhaseSchema } = require("../schemas/PhaseSchema");
 
 const router = Router();
 
 router.get("/", getPhases);
 router.get("/:idProject", getPhasesByProject);
-router.post("/", createPhase);
-router.put("/update/:id", updatePhase);
-router.delete("/", deletePhase);
+router.post("/new",[validateSchema(createPhaseSchema),validateJwt,validatePermissions], createPhase);
+router.patch("/update/:id",[validateJwt, validatePermissions], updatePhase);
+router.delete("/",[validateJwt, validatePermissions], deletePhase);
 module.exports = router;

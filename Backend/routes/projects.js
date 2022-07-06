@@ -6,20 +6,17 @@ const {
   updateProject,
   deleteProject,
 } = require("../controllers/projects");
-const { validateFields } = require("../middleware/validateFields");
+const { validateSchema } = require("../middleware/validateFields");
 const { validateJwt } = require("../middleware/validateJwt");
 const { validatePermissions } = require("../middleware/validatePermissions");
+const { createProjectSchema } = require("../schemas/ProjectSchema");
 
 const router = Router();
 
 router.get("/", getAllProjects);
+
 router.post(
-  "/new",
-  [
-    check("name", "El nombre es obligatorio").not().isEmpty(),
-    check("manager", "El encargado es obligatorio").not().isEmpty(),
-    validateFields,
-  ],
+  "/new", [validateSchema(createProjectSchema),validateJwt,validatePermissions],
   createProject
 );
 router.patch("/update/:id", [validateJwt, validatePermissions], updateProject);

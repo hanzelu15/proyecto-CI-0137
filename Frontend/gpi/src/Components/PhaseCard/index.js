@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { MdOutlineLocationOn } from "react-icons/md";
 import { Link } from 'react-router-dom';
 export const PhaseCard = ( {phase} ) => {

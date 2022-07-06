@@ -37,7 +37,7 @@ export const CreateProject = () => {
   return (
     <>
       {!loading && (
-        <div className="h-full flex flex-col items-center  pt-20 responsive-width-component">
+        <div className="h-full flex flex-col items-center  pb-[75px] pt-20 responsive-width-component">
           <h4 className="mb-14 text-3xl md:text-4xl">Crear Proyecto</h4>
           <form
             onSubmit={handleSubmit(onSubmit)}

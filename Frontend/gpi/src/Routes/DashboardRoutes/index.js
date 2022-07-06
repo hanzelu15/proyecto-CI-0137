@@ -17,7 +17,7 @@ export const DashboardRoutes = () => {
           <NavBar></NavBar>
         </div>
 
-        <div className="pb-[50px] md:mt-[50px] z-0 top-0 md:bottom-0">
+        <div className="pb-[75px] md:mt-[50px] z-0 top-0 md:bottom-0">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="home" element={<Home />} />

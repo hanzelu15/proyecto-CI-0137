@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import Pagination from "../../../Components/Pagination/Index.js";
-import { PhaseCard } from "../../../Components/PhaseCard.js/index.js";
+import { PhaseCard } from "../../../Components/PhaseCard/index.js";
 import { getPhasesByProject } from "../../../Services/PhaseService";
 import { getUserById } from "../../../Services/UserService.js";
 import { ProjectInfo } from "../ProjectInfo/index.js";
@@ -19,6 +19,7 @@ export const ProjectView = () => {
       .then((resp) => {
         setData(resp);
         setloading(false);
+        console.log(resp);
       })
       .then(
         getUserById(project.manager).then((resp) => {

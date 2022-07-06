@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const Pagination = ({ postsPerPage, totalPosts, setData, query }) => {
   const pageNumbers = [];
   const [current, setCurrent] = useState(0);
-
+console.log("tOTAL POST ES ",totalPosts);
   for (let i = 0; i <= Math.ceil(totalPosts / postsPerPage) - 1; i++) {
     pageNumbers.push(i);
   }

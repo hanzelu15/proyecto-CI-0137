@@ -81,7 +81,7 @@ export const ProjectInfo = ({ project, manager }) => {
           <div className="flex flex-col md:flex-row w-full justify-between mb-5 text-xl">
             <span className="font-semibold">Nombre:</span>{" "}
             <input
-              className="text-right"
+              className="text-right p-1 rounded-lg border disabled:border-transparent"
               type="text"
               defaultValue={project.name}
               disabled={!isEditable}
@@ -94,7 +94,7 @@ export const ProjectInfo = ({ project, manager }) => {
           <div className="flex flex-col md:flex-row w-full justify-between mb-5">
             <span className="font-semibold">Ubicación:</span>{" "}
             <input
-              className="text-right"
+              className="text-right p-1 rounded-lg border disabled:border-transparent"
               type="text"
               defaultValue={project.location}
               disabled={!isEditable}
@@ -109,7 +109,7 @@ export const ProjectInfo = ({ project, manager }) => {
   
               <select
               disabled={!isEditable}
-              className="text-right disabled:bg-transparent disabled:appearance-none"
+              className="text-right disabled:bg-transparent disabled:appearance-none p-1 rounded-lg border disabled:border-transparent"
                 {...register("manager", {
                   required: "Debe especificar una Encargado",
                 })}
@@ -128,6 +128,7 @@ export const ProjectInfo = ({ project, manager }) => {
             <textarea
               rows={8}
               type="textarea"
+              className="p-3 rounded-lg border disabled:border-transparent"
               defaultValue={
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tincidunt elementum nunc at congue. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris condimentum, "
               }

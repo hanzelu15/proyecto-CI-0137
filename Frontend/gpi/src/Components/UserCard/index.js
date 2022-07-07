@@ -35,31 +35,30 @@ export const UserCard = ( {user} ) => {
         {
             user &&
             <div state={user} className='bg-white h-20 w-full flex justify-between items-center shadow-md px-2'>
-              <h4 className='text-l md:text-l'> {user.name}</h4>
+              <h4 className='text-xs md:text-xs lg:text-lg'> {user.name}</h4>
               <div className='d-flex flex-row-reverse'>
-                <div class="p-2">
                 <button
-                  className={`btn-green mr-5 ${!isEditable ? "hidden" : ""}`}
+                  class={`px-3 py-2 text-xs btn-green mr-1 ${!isEditable ? "hidden" : ""}`}
                   onClick={handleEdit}
                 >
                   {" "}
-                  <MdSave className="text-xs md:text-xs" />{" "}
+                  <MdSave class="text-xl md:text-xl" />{" "}
                 </button>
                 <button
-                  className="btn-green mr-5"
+                  class="px-3 py-2 text-xs btn-green mr-1"
                   onClick={() => setIsEditable(!isEditable)}
                 >
                   {" "}
-                  <MdModeEdit className="text-xs md:text-xs" />{" "}
+                  <MdModeEdit className="text-xl md:text-xl" />{" "}
                 </button>
                 <select
                 disabled={!isEditable}
-                className="text-right disabled:bg-transparent disabled:appearance-none"
+                className="text-right text-xs md:text-xs lg:text-lg disabled:bg-transparent disabled:appearance-none"
                   {...register("role", {
                     required: "Debe especificar un rol",
                   })}
                 >
-                <option className='text-l md:text-l' defaultValue={true} value={user.uid}> {user.role}</option>
+                <option defaultValue={true} value={user.uid}> {user.role}</option>
                     <option value="ADMIN">
                       ADMIN
                     </option>
@@ -67,7 +66,6 @@ export const UserCard = ( {user} ) => {
                       INSPECTOR
                     </option>
                 </select>
-                </div>
               </div>
             </div>
         }

@@ -41,3 +41,14 @@ export async function getUsersByRole(role) {
     console.error(error);
   }
 }
+
+export async function getAllUsers(id, page = 0, limit = 5) {
+  try {
+    console.log("En getAllUsers ", id);
+    const response = await gpiAPI.get("/user", { params: {id, page, limit } });
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}

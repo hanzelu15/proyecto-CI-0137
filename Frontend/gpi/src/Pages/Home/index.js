@@ -27,7 +27,10 @@ export const Home = () => {
           </button>
           <button
             className="h-[48px] w-full mb-8 rounded-none bg-dark-blue text-white"
-            onClick={() => {}}
+            onClick={(e) => {
+              e.preventDefault();
+              window.location.href = "/userAdministration";
+            }}
           >
             Administrar Usuarios
           </button>

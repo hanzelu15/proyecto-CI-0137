@@ -21,12 +21,13 @@ const updateUserData = async (req, res) => {
   } else {
     console.log("Password undefined");
   }
+  console.log(req.body.data);
   const updatedUser = await User.findByIdAndUpdate(
     req.params.id,
     req.body.data
   );
   //console.log(req.params);
-  res.json({
+  return res.json({
     ok: true,
     updatedUser,
   });
@@ -43,4 +44,20 @@ const usersByRole = async (req, res) => {
     users,
   });
 };
-module.exports = { getUserById, updateUserData, usersByRole };
+
+const getAllUsers = async (req, res) => {
+  const { id, page, limit } = req.query;
+  console.log("En getUsers controller  ", id);
+  const [users, count] = await Promise.all([
+    User.find({ _id: {$ne: id}})
+      .skip(page * limit || 0)
+      .limit(limit || 5),
+      User.count(),
+  ]);
+  res.json({
+    ok: true,
+    count,
+    users,
+  });
+};
+module.exports = { getUserById, updateUserData, usersByRole, getAllUsers };

@@ -8,6 +8,7 @@ import { CreateProject } from "../../Pages/Proyects/CreateProject/";
 import { ProjectView } from "../../Pages/Proyects/ProjectView";
 import { PhasesView } from "../../Pages/Phases/PhasesView";
 import { CreatePhase } from "../../Pages/Phases/CreatePhase";
+import { UserAdministration } from "../../Pages/UserAdministration";
 
 export const DashboardRoutes = () => {
   return (
@@ -27,6 +28,7 @@ export const DashboardRoutes = () => {
             <Route path="phase/:name" element={<PhasesView />} />
             <Route path="perfil" element={<Perfil />} />
             <Route path="new-phase/:project" element={<CreatePhase />} />
+            <Route path="userAdministration" element={<UserAdministration />} />
           </Routes>
         </div>
       </div>

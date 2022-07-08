@@ -6,6 +6,11 @@ import { Link } from "react-router-dom";
 import { useAuthStore } from "../../hooks";
 import Swal from "sweetalert2";
 
+ <style>
+ 
+
+ </style>
+
 export const Login = () => {
   const { startLogin, errorMessage } = useAuthStore();
   const {
@@ -42,7 +47,7 @@ export const Login = () => {
               className="input-text-template peer"
               placeholder=" "
               {...register("email", {
-                required: "Debe especificar una correo",
+                required: "Debe especificar un correo",
               })}
             />
             <label className="flex items-center peer-focus:font-medium absolute text-xl text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-8 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8">

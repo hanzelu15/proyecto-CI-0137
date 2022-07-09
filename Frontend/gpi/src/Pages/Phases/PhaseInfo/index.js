@@ -47,7 +47,7 @@ export const PhaseInfo = ({ phase }) => {
   } = useForm({ defaultValues: phase });
   return (
     <header className="flex flex-col items-center w-full py-5">
-      <div className="flex justify-between flex-col items-center w-full mb-5">
+      <div className="flex justify-between flex-col w-full mb-5 items-end" >
         <div className="mb-5">
           <button
             className={`btn-green mr-5 ${!isEditable ? "hidden" : ""}`}

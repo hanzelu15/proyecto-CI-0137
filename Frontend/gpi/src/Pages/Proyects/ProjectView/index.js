@@ -30,10 +30,11 @@ export const ProjectView = () => {
 
   return (
     <div className="flex flex-col justify-items-center items-center responsive-width-component">
+      <h2 className="text-4xl font-semibold pt-10 items-start">Fases</h2>
       <ProjectInfo project={project} manager={manager}></ProjectInfo>
       <section className="w-full flex flex-col gap-5">
         <div className="flex w-full  justify-between">
-          <h4 className="text-3xl">Fases:</h4>
+          <h4 className="text-3xl"> </h4>
           <Link to={`/new-phase/${project.name}`} state={project} className="btn-green h-fit">Agregar una nueva fase</Link>
           
         </div>

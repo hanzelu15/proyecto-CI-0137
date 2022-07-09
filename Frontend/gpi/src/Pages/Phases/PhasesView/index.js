@@ -24,10 +24,11 @@ export const PhasesView = () => {
 
   return (
     <div className="flex flex-col justify-items-center items-center responsive-width-component">
+      <h2 className="text-4xl font-semibold pt-10 items-start">Unidades</h2>
       <PhaseInfo phase={phase}></PhaseInfo>
       <section className="w-full flex flex-col gap-5"> 
         <div className="flex w-full  justify-between">
-          <h4 className="text-3xl">Fases:</h4>
+          <h4 className="text-3xl"> </h4>
           <Link to={`/new-unit/${phase.name}`} state={phase} className="btn-green h-fit">Agregar una nueva unidad</Link>
           
         </div>

@@ -48,7 +48,7 @@ export const CreateUnit = () => {
           </div>
           <div className="relative z-0 w-full mb-14 group">
             <input
-              type="number"
+              type="name"
               name="number"
               className="input-text-template peer"
               placeholder=" "

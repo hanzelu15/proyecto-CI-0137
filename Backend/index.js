@@ -2,6 +2,7 @@ const { v4: uuidv4 } = require("uuid");
 const express = require("express");
 const aws = require("aws-sdk");
 const multer = require("multer");
+//const swaggerUI = requiere(swagger-ui-express);
 const multerS3 = require("multer-s3");
 const { dbConnection } = require("./database/config");
 const cors = require("cors");
@@ -65,6 +66,8 @@ server.post("/upload", uploadMultiple, function (req, res) {
     }),
   });
 });
+
+//server.use("/docs", swaggerUI.serve, swaggerUI.setup(swaggerFile));
 
 server.use(express.static("public"));
 console.log(`The server is running at http://localhost: ${process.env.PORT}`);

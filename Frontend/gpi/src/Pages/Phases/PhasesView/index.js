@@ -6,11 +6,6 @@ import { UnitCard } from "../../../Components/UnitCard";
 import { getUnitsByPhase } from "../../../Services/UnitService";
 import { PhaseInfo } from "../PhaseInfo";
 
-
-
-
-
-
 export const PhasesView = () => {
   const [loading, setloading] = useState(true);
   const [data, setData] = useState([]);
@@ -30,10 +25,10 @@ export const PhasesView = () => {
   return (
     <div className="flex flex-col justify-items-center items-center responsive-width-component">
       <PhaseInfo phase={phase}></PhaseInfo>
-      <section className="w-full flex flex-col gap-5">
+      <section className="w-full flex flex-col gap-5"> 
         <div className="flex w-full  justify-between">
           <h4 className="text-3xl">Fases:</h4>
-          <Link to={`/new-phase/${phase.name}`} state={phase} className="btn-green h-fit">Agregar una nueva unidad</Link>
+          <Link to={`/new-unit/${phase.name}`} state={phase} className="btn-green h-fit">Agregar una nueva unidad</Link>
           
         </div>
         {!loading ? (

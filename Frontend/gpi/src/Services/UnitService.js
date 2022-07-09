@@ -8,3 +8,12 @@ export async function getUnitsByPhase(idPhase, page = 0, limit = 5) {
     console.error(error);
   }
 }
+
+export async function createUnit(data) {
+  try {
+    const response = await gpiAPI.post(`/unit/new`,  data );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}

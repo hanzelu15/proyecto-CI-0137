@@ -4,7 +4,7 @@ const UnitSchema = Schema({
 
     name:{
         type: String,
-        require: true
+        require: false
     },
     number:{
         type: String,

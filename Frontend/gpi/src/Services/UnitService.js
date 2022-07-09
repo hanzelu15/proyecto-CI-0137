@@ -11,7 +11,15 @@ export async function getUnitsByPhase(idPhase, page = 0, limit = 5) {
 
 export async function createUnit(data) {
   try {
-    const response = await gpiAPI.post(`/unit/new`,  data );
+    const response = await gpiAPI.post(`/units/new`, data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+export async function deleteUnit(id) {
+  try {
+    const response = await gpiAPI.delete(`/units/${id}` );
     return response.data;
   } catch (error) {
     console.error(error);

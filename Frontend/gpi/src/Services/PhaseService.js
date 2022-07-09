@@ -17,3 +17,12 @@ export async function createPhase(data) {
     console.error(error);
   }
 }
+
+export async function deletePhase(id) {
+  try {
+    const response = await gpiAPI.delete(`/phases/${id}` );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}

@@ -18,5 +18,5 @@ router.get("/", getPhases);
 router.get("/:idProject", getPhasesByProject);
 router.post("/new",[validateSchema(createPhaseSchema),validateJwt,validatePermissions], createPhase);
 router.patch("/update/:id",[validateJwt, validatePermissions], updatePhase);
-router.delete("/",[validateJwt, validatePermissions], deletePhase);
+router.delete("/:id",[validateJwt, validatePermissions], deletePhase);
 module.exports = router;

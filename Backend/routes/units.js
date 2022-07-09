@@ -14,5 +14,5 @@ router.get("/", getUnit);
 router.get("/:idPhase", getUnitsByPhase);
 router.post("/new", createUnit);
 router.patch("/update/:id", updateUnit);
-router.delete("/", deleteUnit);
+router.delete("/:id", deleteUnit);
 module.exports = router;

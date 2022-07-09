@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { MdDelete, MdModeEdit, MdSave } from "react-icons/md";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+import { deletePhase } from "../../../Services/PhaseService";
 
 
 export const PhaseInfo = ({ phase }) => {
   const [isEditable, setIsEditable] = useState(false);
   const [loading, setLoading] = useState(true);
   const [phases, setPhases] = useState([]);
+  let navigate = useNavigate();
   const handleEdit = async () => {
     // const response = await updateProject(watchAllFields);
     // setIsEditable(!isEditable);
@@ -27,7 +30,9 @@ export const PhaseInfo = ({ phase }) => {
       cancelButtonText: "No, Cancelar!",
     }).then((result) => {
       if (result.isConfirmed) {
+        deletePhase(phase._id);
         Swal.fire("Borrado!", "Su Proyecto fue borrado.", "success");
+        navigate(-1);
       }
     });
   };

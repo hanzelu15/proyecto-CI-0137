@@ -5,8 +5,10 @@ import Pagination from "../../../Components/Pagination/Index";
 import { UnitCard } from "../../../Components/UnitCard";
 import { getUnitsByPhase } from "../../../Services/UnitService";
 import { PhaseInfo } from "../PhaseInfo";
+import { useAuthStore } from "../../../hooks";
 
 export const PhasesView = () => {
+  const { user } = useAuthStore();
   const [loading, setloading] = useState(true);
   const [data, setData] = useState([]);
   const location = useLocation();
@@ -29,7 +31,7 @@ export const PhasesView = () => {
       <section className="w-full flex flex-col gap-5"> 
         <div className="flex w-full  justify-between">
           <h4 className="text-3xl"> </h4>
-          <Link to={`/new-unit/${phase.name}`} state={phase} className="btn-green h-fit">Agregar una nueva unidad</Link>
+          <Link to={`/new-unit/${phase.name}`} state={phase} className={`${user.role!=="ADMIN" ? "hidden" : ""} btn-green h-fit"`}>Agregar una nueva unidad</Link>
           
         </div>
         {!loading ? (

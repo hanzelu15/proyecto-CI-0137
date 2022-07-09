@@ -4,9 +4,11 @@ import { MdDelete, MdModeEdit, MdSave } from "react-icons/md";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { deletePhase } from "../../../Services/PhaseService";
+import { useAuthStore } from "../../../hooks";
 
 
 export const PhaseInfo = ({ phase }) => {
+  const { user } = useAuthStore();
   const [isEditable, setIsEditable] = useState(false);
   const [loading, setLoading] = useState(true);
   const [phases, setPhases] = useState([]);
@@ -57,13 +59,13 @@ export const PhaseInfo = ({ phase }) => {
             <MdSave className="text-xl md:text-xl" />{" "}
           </button>
           <button
-            className="btn-green mr-5"
+            className={`${user.role!=="ADMIN" ? "hidden" : ""} btn-green mr-5`}
             onClick={() => setIsEditable(!isEditable)}
           >
             {" "}
             <MdModeEdit className="text-xl md:text-xl" />{" "}
           </button>
-          <button className="btn-green" onClick={handleDelete}>
+          <button className={`${user.role!=="ADMIN" ? "hidden" : ""} btn-green`}onClick={handleDelete}>
             {" "}
             <MdDelete className="text-xl md:text-xl" />{" "}
           </button>

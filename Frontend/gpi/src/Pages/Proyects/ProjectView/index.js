@@ -7,8 +7,10 @@ import { PhaseCard } from "../../../Components/PhaseCard/index.js";
 import { getPhasesByProject } from "../../../Services/PhaseService";
 import { getUserById } from "../../../Services/UserService.js";
 import { ProjectInfo } from "../ProjectInfo/index.js";
+import { useAuthStore } from "../../../hooks";
 
 export const ProjectView = () => {
+  const { user } = useAuthStore();
   const [loading, setloading] = useState(true);
   const [data, setData] = useState([]);
   const location = useLocation();
@@ -34,9 +36,8 @@ export const ProjectView = () => {
       <ProjectInfo project={project} manager={manager}></ProjectInfo>
       <section className="w-full flex flex-col gap-5">
         <div className="flex w-full  justify-between">
-          <h4 className="text-3xl"> </h4>
-          <Link to={`/new-phase/${project.name}`} state={project} className="btn-green h-fit">Agregar una nueva fase</Link>
-          
+          <h4 className="text-3xl">Fases:</h4>
+          <Link to={`/new-phase/${project.name}`} state={project} className={`${user.role!=="ADMIN" ? "hidden" : ""} btn-green h-fit"`}>Agregar una nueva fase</Link>
         </div>
         {!loading ? (
           data.phases.map((phase) => (

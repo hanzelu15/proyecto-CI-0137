@@ -6,7 +6,6 @@ export const Home = () => {
 
   const { startLogout, user } = useAuthStore();
 
-
   return (
     <>
       <div className=" flex flex-col justify-items-center items-center  pt-20">
@@ -26,7 +25,7 @@ export const Home = () => {
             Proyectos
           </button>
           <button
-            className="h-[48px] w-full mb-8 rounded-none bg-dark-blue text-white"
+            className={`${user.role!=="ADMIN" ? "hidden" : ""} h-[48px] w-full mb-8 rounded-none bg-dark-blue text-white`}
             onClick={(e) => {
               e.preventDefault();
               window.location.href = "/userAdministration";

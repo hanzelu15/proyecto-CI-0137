@@ -1,6 +1,6 @@
 import React, { useState, useRef  } from "react";
 import { useForm } from "react-hook-form";
-import { MdPerson, MdOutlineEmail, MdLock } from "react-icons/md";
+import { MdPerson, MdOutlineEmail, MdLock, MdPhone } from "react-icons/md";
 import { useAuthStore } from "../../hooks";
 import { updateUserData } from "../../Services/UserService.js";
 import Swal from "sweetalert2";
@@ -69,7 +69,7 @@ export const Perfil = () => {
             <input
               type="name"
               name="floating_name"
-              className="block w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none disabled:bg-gray-200 dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className="block w-full pl-2 text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none disabled:bg-gray-200 dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               defaultValue={user.name}
               required
@@ -88,7 +88,7 @@ export const Perfil = () => {
             <input
               type="name"
               name="floating_name"
-              className="block w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none disabled:bg-gray-200 dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className="block w-full pl-2 text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none disabled:bg-gray-200 dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               defaultValue={user.email}
               {...register("email", {
@@ -97,6 +97,31 @@ export const Perfil = () => {
               required
               disabled={isDisabled}
             />
+          </div>
+          <div className="flex items-center">
+            <label htmlFor="floating_name" className="flex items-center">
+              {" "}
+              <MdPhone className="text-6xl mr-1" />
+            </label>
+
+            <input
+              type="name"
+              name="floating_name"
+              className="block w-full pl-2 text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none disabled:bg-gray-200 dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" "
+              defaultValue={user.phone}
+              {...register("phone", {
+                required: "Debe especificar una número",
+                maxLength: 12,
+                validate: (value) =>
+                  !isNaN(value) || "Solo se permiten números",
+              })}
+              required
+              disabled={isDisabled}
+            />
+          </div>
+          <div className="flex items-center pl-16 text-lg text-gray-900">
+            Rol: {user.role}
           </div>
           <button
             type="submit"
@@ -108,8 +133,8 @@ export const Perfil = () => {
       </div>
 
 
-      <div className=" flex flex-col items-center  pt-20">
-        <h4 className="mb-20 text-3xl md:text-4xl">Cambiar contraseña</h4>
+      <div className=" flex flex-col items-center pt-20">
+        <h4 className="mb-5 text-3xl md:text-4xl">Cambiar contraseña</h4>
         <form
           onSubmit={handleSubmit2(onSubmit)}
           className="w[300px] md:w-[375px]"
@@ -157,7 +182,7 @@ export const Perfil = () => {
               <p className="text-red-500">{errors2.password_repeat.message}</p>
             )}
           </div>
-          <div className="flex justify-between  items-center">
+          <div className="flex justify-end  items-center">
             <input type="submit" value="Cambiar" className="btn-green" />
           </div>
         </form>

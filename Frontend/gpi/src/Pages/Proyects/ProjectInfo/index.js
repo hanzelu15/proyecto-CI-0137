@@ -6,8 +6,11 @@ import { MdDelete, MdModeEdit, MdSave } from "react-icons/md";
 import Swal from "sweetalert2";
 import { deleteProject, updateProject } from "../../../Services/ProjectService";
 import { getUsersByRole } from "../../../Services/UserService";
+import { useAuthStore } from "../../../hooks";
+
 
 export const ProjectInfo = ({ project, manager }) => {
+  const { user } = useAuthStore();
   const [isEditable, setIsEditable] = useState(false);
   const [loading, setLoading] = useState(true);
   const [managers, setManagers] = useState([]);
@@ -66,13 +69,13 @@ export const ProjectInfo = ({ project, manager }) => {
             <MdSave className="text-xl md:text-xl" />{" "}
           </button>
           <button
-            className="btn-green mr-5"
+            className={`${user.role!=="ADMIN" ? "hidden" : ""} btn-green mr-5`} 
             onClick={() => setIsEditable(!isEditable)}
           >
             {" "}
             <MdModeEdit className="text-xl md:text-xl" />{" "}
           </button>
-          <button className="btn-green" onClick={handleDelete}>
+          <button className={`${user.role!=="ADMIN" ? "hidden" : ""} btn-green`} onClick={handleDelete}>
             {" "}
             <MdDelete className="text-xl md:text-xl" />{" "}
           </button>

@@ -28,3 +28,11 @@ export async function createProject(data) {
     console.error(error);
   }
 }
+export async function deleteProject(id) {
+  try {
+    const response = await gpiAPI.delete(`/projects/${id}` );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}

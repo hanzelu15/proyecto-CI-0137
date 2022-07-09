@@ -1,15 +1,17 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { MdDelete, MdModeEdit, MdSave } from "react-icons/md";
 import Swal from "sweetalert2";
-import { updateProject } from "../../../Services/ProjectService";
+import { deleteProject, updateProject } from "../../../Services/ProjectService";
 import { getUsersByRole } from "../../../Services/UserService";
 
 export const ProjectInfo = ({ project, manager }) => {
   const [isEditable, setIsEditable] = useState(false);
   const [loading, setLoading] = useState(true);
   const [managers, setManagers] = useState([]);
+  let navigate = useNavigate();
   useEffect(() => {
     getUsersByRole("ADMIN").then((data) => {
       setManagers(data.users);
@@ -34,7 +36,9 @@ export const ProjectInfo = ({ project, manager }) => {
       cancelButtonText: "No, Cancelar!",
     }).then((result) => {
       if (result.isConfirmed) {
+        deleteProject(project._id);
         Swal.fire("Borrado!", "Su Proyecto fue borrado.", "success");
+        navigate(-1);
       }
     });
   };

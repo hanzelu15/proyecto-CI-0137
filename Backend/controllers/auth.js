@@ -162,33 +162,24 @@ const passwordRecovery = async (req, res) => {
       }
     }
     });
-    /*if (!user) {
-      res.status(401).send("Datos no válidos");
-      return;
-    }*/
     const randomToken = Math.floor(
       Math.random() * (999999 - 100000 + 1) + 100000
     );
     const code = randomToken.toString();
     await RecoveryCode.deleteOne({userID: user._id});
     console.log("Random Token : ", code);
-    /*const nowDate = new Date();
-    const expirationDate = new Date(
-      nowDate.setMinutes(nowDate.getMinutes() + 15)
-    ).toISOString();
-
-    await db.UserRecoveryCode.create({
-      userId: user.id,
-      code: randomToken,
-      expirationDate,
-    });*/
     const recoCode = new RecoveryCode({
       userID: user._id,
       code: code,
     });
     console.log("En pr 2 : ", recoCode);
     try {
-      const newRecoCode = await RecoveryCode.create({userID: user._id, code: code});
+      const nowDate = new Date();
+      const expirationDate = new Date(
+        nowDate.setMinutes(nowDate.getMinutes() + 5)
+      );
+      console.log("Date : ", expirationDate);
+      const newRecoCode = await RecoveryCode.create({userID: user._id, code: code, expiration: expirationDate});
       console.log("En pr 3 : ", newRecoCode);
       await sendRecoveryCodeEmail(userPayload.data.email, code);
       return res.json({
@@ -246,21 +237,19 @@ const codeCheck = async (req, res) => {
   const code = req.body.data.code;
   console.log("En codeCheck : ", req.body.data);
   try {
-    /*await RecoveryCode.findOne({ code: code }, function (err, docs) {
-      if (err){
-          console.log(err);
-      }
-      else{
-          console.log("Result : ", docs);
-      }});
-    console.log("En codeCheck : ", docs);
-    if (!docs) {
-      return res.status(400).json({
-        ok: false,
-      });
-    }*/
     const  cd = await RecoveryCode.findOne({  code: code  });
-    if (!cd) {
+    const nowDate = new Date();
+    let expired;
+    console.log("Fecha exp: ", cd.expiration);
+    console.log("Fecha actual: ", nowDate);
+    if(cd.expiration.getTime() > nowDate.getTime()){
+      console.log("Fecha exp mayor.");
+      expired = false;
+    } else {
+      console.log("Fecha exp menor.");
+      expired = true;
+    }
+    if (!cd || expired) {
       return res.status(400).json({
         ok: false,
         msg: "Username does not exist ",
@@ -280,4 +269,30 @@ const codeCheck = async (req, res) => {
   }
 };
 
-module.exports = { createUser, loginUser, renewToken, getUsers, passwordRecovery, passwordChange, codeCheck };
+const passwordUpate = async (req, res) => {
+  console.log("Password Update", req.body);
+  if (req.body.data.password !== undefined) {
+    let pass = req.body.data.password;
+    req.body.data.password = bcryptjs.hashSync(pass, 8);
+  } else {
+    console.log("Password undefined");
+    return res.json({
+      ok: false,
+    });
+  }
+  console.log("Despues del hash: ", req.body);
+  const updatedUser = await User.findByIdAndUpdate(
+    req.body.userID, { password: req.body.data.password }
+  );
+  console.log("updatedUser: ", updatedUser);
+  if(!updatedUser){
+    return res.json({
+      ok: false,
+    });
+  }
+  return res.json({
+    ok: true,
+  });
+};
+
+module.exports = { createUser, loginUser, renewToken, getUsers, passwordRecovery, passwordChange, codeCheck, passwordUpate };

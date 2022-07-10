@@ -8,6 +8,7 @@ const {
   passwordRecovery,
   passwordChange,
   codeCheck,
+  passwordUpate,
 } = require("../controllers/auth");
 const {
   validateFields,
@@ -31,5 +32,7 @@ router.post("/password-recovery/", passwordRecovery);
 router.post("/password-change/", passwordChange);
 
 router.post("/code-check/", codeCheck);
+
+router.post("/password-update/", passwordUpate);
 
 module.exports = router;

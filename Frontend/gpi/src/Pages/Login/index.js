@@ -88,7 +88,7 @@ export const Login = () => {
           <div className="flex justify-between items-center mt-10">
             <p className="">
               ¿Has olvidado tu contraseña?{" "}
-              <Link to="/register" className="text-blue-600 underline">
+              <Link to="/password-recovery" className="text-blue-600 underline">
                 Click aquí
               </Link>
             </p>

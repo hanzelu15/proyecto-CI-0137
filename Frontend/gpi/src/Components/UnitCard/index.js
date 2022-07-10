@@ -9,7 +9,7 @@ export const UnitCard = ( {unit} ) => {
     <>
         {
             unit &&
-            <Link to={`/phase/${unit.name}`}
+            <Link to={`/unit/${unit.number}`}
             state={unit}
 
             className='bg-white h-20 w-full rounded-lg flex justify-between items-center shadow-md px-5 hover:bg-gray-200'>

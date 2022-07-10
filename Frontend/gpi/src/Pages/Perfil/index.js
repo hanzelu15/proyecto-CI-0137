@@ -54,7 +54,7 @@ export const Perfil = () => {
       <div className=" w-[375px] h-full flex flex-col items-center m-auto">
         <h3 className="text-4xl py-5">Informacion Personal</h3>
         <button
-          className=" self-end tracking-wide text-[22px] text-white w-fit bg-orange-50 hover:bg-orange-100 focus:ring-4 focus:ring-blue-300 font-medium text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+          className=" self-end tracking-wide text-[22px] rounded-lg text-white w-fit bg-orange-50 hover:bg-orange-100 focus:ring-4 focus:ring-blue-300 font-medium text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
           onClick={() => setIsDisabled(!isDisabled)}
         >
           Editar
@@ -183,7 +183,7 @@ export const Perfil = () => {
             )}
           </div>
           <div className="flex justify-end  items-center">
-            <input type="submit" value="Cambiar" className="btn-green" />
+            <input type="submit" value="Cambiar" className="rounded-lg btn-green" />
           </div>
         </form>
       </div>

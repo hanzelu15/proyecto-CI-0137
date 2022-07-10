@@ -20,10 +20,10 @@ export const ProyectsView = () => {
 
   return (
     <div className="flex flex-col justify-items-center items-center responsive-width-component">
-      <h2 className="text-4xl font-semibold pt-10 items-start">Proyectos</h2>
+      <h2 className="text-4xl font-semibold pt-10 pb-7">Proyectos</h2>
       <header className="flex justify-between items-center py-5 w-full ">
-        <h4 className="text-2xl md:text-3xl">Proyectos</h4>
-        <Link className={`${user.role!=="ADMIN" ? "hidden" : ""} btn-green h-fit"`} to="/new-project">
+        <h4 className="text-2xl md:text-3xl"> </h4>
+        <Link className={`${user.role!=="ADMIN" ? "hidden" : ""} btn-green rounded-lg h-fit"`} to="/new-project">
            Agregar
         </Link>
       </header>

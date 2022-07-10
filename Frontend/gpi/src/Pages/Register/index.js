@@ -182,7 +182,7 @@ export const Register = () => {
               </Link>
             </p>
 
-            <input type="submit" value="Registrarse" className="btn-green" />
+            <input type="submit" value="Registrarse" className="btn-green rounded-lg" />
           </div>
         </form>
       </div>

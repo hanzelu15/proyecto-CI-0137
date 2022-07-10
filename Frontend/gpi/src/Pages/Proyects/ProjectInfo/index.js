@@ -62,20 +62,20 @@ export const ProjectInfo = ({ project, manager }) => {
       <div className="flex justify-between flex-col items-end w-full mb-5">
         <div className="mb-5">
           <button
-            className={`btn-green mr-5 ${!isEditable ? "hidden" : ""}`}
+            className={`btn-green rounded-full mr-5 ${!isEditable ? "hidden" : ""}`}
             onClick={handleEdit}
           >
             {" "}
             <MdSave className="text-xl md:text-xl" />{" "}
           </button>
           <button
-            className={`${user.role!=="ADMIN" ? "hidden" : ""} btn-green mr-5`} 
+            className={`${user.role!=="ADMIN" ? "hidden" : ""} btn-green rounded-full mr-5`} 
             onClick={() => setIsEditable(!isEditable)}
           >
             {" "}
             <MdModeEdit className="text-xl md:text-xl" />{" "}
           </button>
-          <button className={`${user.role!=="ADMIN" ? "hidden" : ""} btn-green`} onClick={handleDelete}>
+          <button className={`${user.role!=="ADMIN" ? "hidden" : ""} rounded-full btn-green`} onClick={handleDelete}>
             {" "}
             <MdDelete className="text-xl md:text-xl" />{" "}
           </button>
@@ -86,7 +86,7 @@ export const ProjectInfo = ({ project, manager }) => {
         <form action="" onSubmit={handleSubmit(onSubmit)}>
           {" "}
           <div className="flex flex-col md:flex-row w-full justify-between mb-5 text-xl">
-            <span className="font-semibold">Nombre:</span>{" "}
+            <span className="font-semibold">Nombre del proyecto:</span>{" "}
             <input
               className="text-right p-1 rounded-lg border disabled:border-transparent"
               type="text"

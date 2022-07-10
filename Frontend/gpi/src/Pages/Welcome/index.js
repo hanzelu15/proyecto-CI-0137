@@ -18,13 +18,13 @@ export const Welcome = () => {
       </div>
       <div className=" w-1/2 h-full flex flex-col justify-center items-center gap-12 md:gap-36">
         <Link
-          className="py-4 px-8 text-white bg-orange-50 hover:bg-orange-100 focus:ring-4 focus:ring-blue-300 font-light text-3xl text-center dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+          className="py-4 px-8 text-white bg-orange-50 rounded-lg hover:bg-orange-100 focus:ring-4 focus:ring-blue-300 font-light text-3xl text-center dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
           to="login"
         >
           Iniciar Sesión
         </Link>
         <Link
-          className="text-white py-4 px-8 bg-orange-50 hover:bg-orange-100 focus:ring-4 focus:ring-blue-300 font-light text-3xl text-center dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+          className="text-white py-4 px-8 bg-orange-50 rounded-lg hover:bg-orange-100 focus:ring-4 focus:ring-blue-300 font-light text-3xl text-center dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
           to="register"
         >
           Registrarse

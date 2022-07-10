@@ -15,7 +15,7 @@ export const ProjectCard = ( {project} ) => {
             <Link to={`/project/${project.name}`}
             state={project}
 
-            className='bg-white h-20 w-full  flex justify-between items-center shadow-md px-5'>
+            className='bg-white h-20 w-full rounded-lg flex justify-between items-center shadow-md px-5'>
 
                 <h4 className='text-xl md:text-2xl'> {project.name}</h4>
                 <div className=' h-20 flex flex-col justify-end py-2'>

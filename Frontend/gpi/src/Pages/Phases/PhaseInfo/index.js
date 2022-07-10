@@ -52,20 +52,20 @@ export const PhaseInfo = ({ phase }) => {
       <div className="flex justify-between flex-col w-full mb-5 items-end" >
         <div className="mb-5">
           <button
-            className={`btn-green mr-5 ${!isEditable ? "hidden" : ""}`}
+            className={`btn-green rounded-full mr-5 ${!isEditable ? "hidden" : ""}`}
             onClick={handleEdit}
           >
             {" "}
             <MdSave className="text-xl md:text-xl" />{" "}
           </button>
           <button
-            className={`${user.role!=="ADMIN" ? "hidden" : ""} btn-green mr-5`}
+            className={`${user.role!=="ADMIN" ? "hidden" : ""} btn-green rounded-full mr-5`}
             onClick={() => setIsEditable(!isEditable)}
           >
             {" "}
             <MdModeEdit className="text-xl md:text-xl" />{" "}
           </button>
-          <button className={`${user.role!=="ADMIN" ? "hidden" : ""} btn-green`}onClick={handleDelete}>
+          <button className={`${user.role!=="ADMIN" ? "hidden" : ""} rounded-full btn-green`}onClick={handleDelete}>
             {" "}
             <MdDelete className="text-xl md:text-xl" />{" "}
           </button>

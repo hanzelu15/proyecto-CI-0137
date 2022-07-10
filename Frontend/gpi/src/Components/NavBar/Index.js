@@ -29,7 +29,7 @@ export const NavBar = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="home" className="flex items-center mx-5">
+          <NavLink to="/Perfil" className="flex items-center mx-5">
             <MdPerson className="text-3xl" />
             <span className="hidden md:block">{user.name}</span> 
           </NavLink>

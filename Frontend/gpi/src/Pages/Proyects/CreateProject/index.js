@@ -105,7 +105,7 @@ export const CreateProject = () => {
               <input
                 type="submit"
                 value="Agregar Proyecto"
-                className="btn-green"
+                className="btn-green rounded-lg"
               />
             </div>
           </form>

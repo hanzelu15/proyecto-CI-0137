@@ -84,7 +84,7 @@ export const Login = () => {
                 Registrarse
               </Link>
             </p>
-            <input type="submit" value="Iniciar sesión" className="btn-green" />
+            <input type="submit" value="Iniciar sesión" className="btn-green rounded-lg" />
           </div>
         </form>
       </div>

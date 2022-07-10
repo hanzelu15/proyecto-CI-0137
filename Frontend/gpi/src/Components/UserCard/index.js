@@ -34,18 +34,18 @@ export const UserCard = ( {user} ) => {
     <>
         {
             user &&
-            <div state={user} className='bg-white h-20 w-full flex justify-between items-center shadow-md px-2'>
+            <div state={user} className='bg-white rounded-lg h-20 w-full flex justify-between items-center shadow-md px-2'>
               <h4 className='text-xs md:text-xs lg:text-lg'> {user.name}</h4>
               <div className='d-flex flex-row-reverse'>
                 <button
-                  class={`px-3 py-2 text-xs btn-green mr-1 ${!isEditable ? "hidden" : ""}`}
+                  class={`px-3 py-2 text-xs rounded-full btn-green mr-1 ${!isEditable ? "hidden" : ""}`}
                   onClick={handleEdit}
                 >
                   {" "}
                   <MdSave class="text-xl md:text-xl" />{" "}
                 </button>
                 <button
-                  class="px-3 py-2 text-xs btn-green mr-1"
+                  class="px-3 py-2 text-xs rounded-full btn-green mr-1"
                   onClick={() => setIsEditable(!isEditable)}
                 >
                   {" "}

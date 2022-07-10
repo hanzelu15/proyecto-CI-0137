@@ -29,7 +29,9 @@ export const ProjectView = () => {
         })
       );
   }, []);
-
+  const query =async (page ,limit)=>{
+    return await getPhasesByProject(project._id,page,limit)
+  }
   return (
     <div className="flex flex-col justify-items-center items-center responsive-width-component">
       <h2 className="text-4xl font-semibold pt-10 items-start">{project.name}: <ni className="font-normal">Fases</ni></h2>
@@ -52,7 +54,7 @@ export const ProjectView = () => {
           postsPerPage={5}
           totalPosts={data.count}
           setData={setData}
-          query={getPhasesByProject}
+          query={query}
         ></Pagination>
       </section>
     </div>

@@ -8,9 +8,10 @@ import { CreateProject } from "../../Pages/Proyects/CreateProject/";
 import { ProjectView } from "../../Pages/Proyects/ProjectView";
 import { PhasesView } from "../../Pages/Phases/PhasesView";
 import { CreatePhase } from "../../Pages/Phases/CreatePhase";
-import { UnitView } from "../../Pages/units/UnitView";
 import { CreateUnit } from "../../Pages/units/CreateUnit";
 import { UserAdministration } from "../../Pages/UserAdministration";
+import { CreateExtra } from "../../Pages/Extras/CreateExtra";
+import { ExtrasView } from "../../Pages/Extras/ExtrasView";
 
 export const DashboardRoutes = () => {
   return (
@@ -28,10 +29,11 @@ export const DashboardRoutes = () => {
             <Route path="new-project" element={<CreateProject />} />
             <Route path="project/:name" element={<ProjectView />} />
             <Route path="phase/:name" element={<PhasesView />} />
-           
+            <Route path="extra/:name" element={<ExtrasView />} />
             <Route path="perfil" element={<Perfil />} />
             <Route path="new-phase/:project" element={<CreatePhase />} />
             <Route path="new-unit/:phase" element={<CreateUnit />} />
+            <Route path="new-extra/:unit" element={<CreateExtra />} />
             <Route path="userAdministration" element={<UserAdministration />} />
           </Routes>
         </div>

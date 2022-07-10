@@ -58,6 +58,46 @@ export const useAuthStore = () => {
       dispatch(onLogout());
     }
   };
+  const sendRecoveryMail = async (data) => {
+    console.log("En auth store ", data.email)
+    //dispatch(onChecking());
+    try {
+      const response = await gpiAPI.post(`auth/password-recovery/`, { data });
+      console.log("En auth store antes del return", response)
+      return response.data;
+      /*const { data } = await gpiAPI.post("/password-recovery/", {data});
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("token-init-date", new Date().getTime());
+      console.log(data);
+      dispatch(onLogin(data.user));*/
+    } catch (error) {
+      console.log(error);
+      /*dispatch(onLogout(error.response.data?.msg || "error inesperado"));
+      setTimeout(() => {
+        dispatch(clearErrorMessage());
+      }, 10000);*/
+    }
+  };
+  const checkCode = async (data) => {
+    console.log("En auth store ", data.code)
+    //dispatch(onChecking());
+    try {
+      const response = await gpiAPI.post(`auth/code-check/`, { data });
+      console.log("En code check antes del return", response)
+      return response.data;
+      /*const { data } = await gpiAPI.post("/password-recovery/", {data});
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("token-init-date", new Date().getTime());
+      console.log(data);
+      dispatch(onLogin(data.user));*/
+    } catch (error) {
+      console.log(error);
+      /*dispatch(onLogout(error.response.data?.msg || "error inesperado"));
+      setTimeout(() => {
+        dispatch(clearErrorMessage());
+      }, 10000);*/
+    }
+  };
   return {
     status,
     user,
@@ -66,5 +106,7 @@ export const useAuthStore = () => {
     startRegister,
     startLogout,
     checkAuthToken,
+    sendRecoveryMail,
+    checkCode,
   };
 };

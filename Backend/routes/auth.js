@@ -5,6 +5,9 @@ const {
   loginUser,
   renewToken,
   getUsers,
+  passwordRecovery,
+  passwordChange,
+  codeCheck,
 } = require("../controllers/auth");
 const {
   validateFields,
@@ -22,5 +25,11 @@ router.post("/login", loginUser);
 
 router.get("/renew", validateJwt, renewToken);
 router.get("/users", [validateJwt, validatePermissions], getUsers);
+
+router.post("/password-recovery/", passwordRecovery);
+
+router.post("/password-change/", passwordChange);
+
+router.post("/code-check/", codeCheck);
 
 module.exports = router;

@@ -5,6 +5,8 @@ import { useAuthStore } from "../../hooks";
 import { Login } from "../../Pages/Login";
 import { Register } from "../../Pages/Register";
 import { Welcome } from "../../Pages/Welcome";
+import { PasswordRecovery } from "../../Pages/PasswordRecovery";
+import { PasswordChange } from "../../Pages/PasswordChange";
 
 import { DashboardRoutes } from "../DashboardRoutes";
 
@@ -26,6 +28,8 @@ export const AppRouter = () => {
               <Route path="/*" element={<Welcome />} />
               <Route path="login" element={<Login />} />
               <Route path="register" element={<Register />} />
+              <Route path="password-recovery" element={<PasswordRecovery />} />
+              <Route path="password-change" element={<PasswordChange />} />
             </>
           ) : (
             <>

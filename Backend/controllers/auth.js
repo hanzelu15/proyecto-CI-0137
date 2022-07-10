@@ -2,6 +2,8 @@ const bcryptjs = require("bcryptjs");
 const { generateJWT } = require("../helpers/jws");
 
 const User = require("../models/user");
+const RecoveryCode = require("../models/RecoveryCode");
+const nodemailer = require("nodemailer");
 
   // #swagger.tags = ['Users']
 
@@ -116,4 +118,166 @@ const getUsers = async (req, res) => {
   });
 };
 
-module.exports = { createUser, loginUser, renewToken, getUsers };
+
+const getTransporter = function () {
+  let transporter;
+  transporter = nodemailer.createTransport({
+    host: process.env.EMAIL_HOST,
+    port: process.env.EMAIL_PORT,
+    secure: true,
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASSWORD,
+    },
+  });
+  return transporter;
+};
+
+const sendRecoveryCodeEmail = async (userEmail, randomToken) => {
+  console.log("Email en send: ", userEmail);
+  let transporter = getTransporter();
+  
+  await transporter.sendMail({
+    from: "ci0137@psgfanclubcr.com",
+    to: userEmail,
+    subject: "Su código de recuperación para GPI",
+    text: `Utilice este código para recuperar su contraseña: ${randomToken}`,
+    html: `Utilice este código para recuperar su contraseña: <strong>${randomToken}</strong>`,
+  });
+};
+
+const passwordRecovery = async (req, res) => {
+  // #swagger.tags = ['Users']
+  console.log("En pr : ", req.body.data);
+  try {
+    const userPayload = req.body;
+    const user = await User.findOne({ email: userPayload.data.email, function (err, docs)  {
+      if (err){
+          console.log(err)
+          res.status(401).send("Datos no válidos");
+          return;
+      }
+      else{
+          console.log("Result : ", docs);
+      }
+    }
+    });
+    /*if (!user) {
+      res.status(401).send("Datos no válidos");
+      return;
+    }*/
+    const randomToken = Math.floor(
+      Math.random() * (999999 - 100000 + 1) + 100000
+    );
+    const code = randomToken.toString();
+    await RecoveryCode.deleteOne({userID: user._id});
+    console.log("Random Token : ", code);
+    /*const nowDate = new Date();
+    const expirationDate = new Date(
+      nowDate.setMinutes(nowDate.getMinutes() + 15)
+    ).toISOString();
+
+    await db.UserRecoveryCode.create({
+      userId: user.id,
+      code: randomToken,
+      expirationDate,
+    });*/
+    const recoCode = new RecoveryCode({
+      userID: user._id,
+      code: code,
+    });
+    console.log("En pr 2 : ", recoCode);
+    try {
+      const newRecoCode = await RecoveryCode.create({userID: user._id, code: code});
+      console.log("En pr 3 : ", newRecoCode);
+      await sendRecoveryCodeEmail(userPayload.data.email, code);
+      return res.json({
+        ok: true,
+        newRecoCode,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        ok: false,
+        msg: "Please contact the administrator",
+      });
+    }
+
+    //await sendRecoveryCodeEmail(userPayload.data.email, code);
+
+    //res.status(200).send();
+  } catch (error) {
+    res.status(500).send("Server error: " + error);
+  }
+};
+
+const passwordChange = async (req, res) => {
+  let userJSON = req.body;
+  let email = req.body.email;
+
+  try {
+    let userExist = await User.findOne({ email });
+    if (userExist) {
+      return res.status(400).json({
+        ok: false,
+        msg: "Email already exist",
+      });
+    }
+    if (!req.body.role) userJSON = { ...userJSON, role: "INSPECTOR" };
+    userJSON.password = bcryptjs.hashSync(req.body.password, 8);
+    const user = new User(userJSON);
+    await user.save();
+    const token = await generateJWT(user.id, user.name);
+
+    return res.status(201).json({
+      ok: true,
+      user,
+      token,
+    });
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      msg: "Please contact the administrator",
+    });
+  }
+};
+
+const codeCheck = async (req, res) => {
+  const code = req.body.data.code;
+  console.log("En codeCheck : ", req.body.data);
+  try {
+    /*await RecoveryCode.findOne({ code: code }, function (err, docs) {
+      if (err){
+          console.log(err);
+      }
+      else{
+          console.log("Result : ", docs);
+      }});
+    console.log("En codeCheck : ", docs);
+    if (!docs) {
+      return res.status(400).json({
+        ok: false,
+      });
+    }*/
+    const  cd = await RecoveryCode.findOne({  code: code  });
+    if (!cd) {
+      return res.status(400).json({
+        ok: false,
+        msg: "Username does not exist ",
+      });
+    }
+    console.log("En codeCheck2 : ", cd);
+    return res.status(201).json({
+      ok: true,
+      cd,
+    });
+    
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      msg: "Please contact the administrator",
+    });
+  }
+};
+
+module.exports = { createUser, loginUser, renewToken, getUsers, passwordRecovery, passwordChange, codeCheck };

@@ -76,7 +76,6 @@ export const Login = () => {
               <p className="text-red-500">{errors.password.message}</p>
             )}
           </div>
-
           <div className="flex justify-between  items-center">
             <p className="">
               No tiene una cuenta?{" "}
@@ -85,6 +84,14 @@ export const Login = () => {
               </Link>
             </p>
             <input type="submit" value="Iniciar sesión" className="btn-green rounded-lg" />
+          </div>
+          <div className="flex justify-between items-center mt-10">
+            <p className="">
+              ¿Has olvidado tu contraseña?{" "}
+              <Link to="/register" className="text-blue-600 underline">
+                Click aquí
+              </Link>
+            </p>
           </div>
         </form>
       </div>

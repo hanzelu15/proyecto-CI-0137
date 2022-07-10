@@ -53,6 +53,7 @@ server.use("/api/projects", require("./routes/projects"));
 server.use("/api/phases", require("./routes/phases"));
 server.use("/api/units", require("./routes/units"));
 server.use("/api/user", require("./routes/users"));
+server.use("/api/extras", require("./routes/extras"));
 server.use("/docs", swaggerUI.serve, swaggerUI.setup(swaggerFile));
 
 

@@ -4,7 +4,7 @@ import { createUnit } from "../../../Services/UnitService";
 import Swal from "sweetalert2";
 import { useNavigate, useLocation } from "react-router-dom";
 
-export const CreateUnit = () => {
+export const CreateExtra = () => {
   let navigate = useNavigate();
   const location = useLocation();
   const phase = location.state;

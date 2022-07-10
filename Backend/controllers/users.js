@@ -1,4 +1,5 @@
 const User = require("../models/user");
+
 const bcryptjs = require("bcryptjs");
 
  // #swagger.tags = ['Users']
@@ -66,4 +67,5 @@ const getAllUsers = async (req, res) => {
     users,
   });
 };
-module.exports = { getUserById, updateUserData, usersByRole, getAllUsers };
+
+module.exports = { getUserById, updateUserData, usersByRole, getAllUsers};

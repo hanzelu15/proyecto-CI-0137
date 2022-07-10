@@ -43,7 +43,7 @@ export const Home = () => {
             Perfil
           </button>
           <button
-            className="h-[48px] w-full mb-8 rounded-none bg-dark-blue rounded-lg text-white"
+            className="h-[48px] w-full mb-8  bg-dark-blue rounded-lg text-white"
             onClick={ startLogout}
           >
             Salir

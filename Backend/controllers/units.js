@@ -95,13 +95,13 @@ const updateUnit = async(req, res) => {
 
 const deleteUnit = async(req, res) => {
   // #swagger.tags = ['Units']
-  const phase = await Phase.findById(req.params.id);
+  const unit = await Unit.findById(req.params.id);
 
-  if (!phase) {
+  if (!unit) {
     res.status(400);
-    throw new Error("Goal not found");
+    throw new Error("Unit not found");
   }
-  await Phase.findByIdAndDelete(req.params.id);
+  await Unit.findByIdAndDelete(req.params.id);
   res.json({
     ok: true,
   });

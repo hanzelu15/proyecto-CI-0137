@@ -25,7 +25,7 @@ export const Home = () => {
             Proyectos
           </button>
           <button
-            className={`${user.role!=="ADMIN" ? "hidden" : ""} h-[48px] w-full mb-8 rounded-none rounded-lg bg-dark-blue text-white`}
+            className={`${user.role!=="ADMIN" ? "hidden" : ""} h-[48px] w-full mb-8 rounded-lg bg-dark-blue text-white`}
             onClick={(e) => {
               e.preventDefault();
               window.location.href = "/userAdministration";
@@ -34,7 +34,7 @@ export const Home = () => {
             Administrar Usuarios
           </button>
           <button
-            className="h-[48px] w-full mb-8 rounded-none bg-dark-blue rounded-lg text-white"
+            className="h-[48px] w-full mb-8 bg-dark-blue rounded-lg text-white"
             onClick={(e) => {
               e.preventDefault();
               window.location.href = "/Perfil";

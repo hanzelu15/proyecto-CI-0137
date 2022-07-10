@@ -3,8 +3,16 @@ const { generateJWT } = require("../helpers/jws");
 
 const User = require("../models/user");
 
+  // #swagger.tags = ['UserAuth']
+
 // register
 const createUser = async (req, res) => {
+    // #swagger.tags = ['Users']
+  /*  #swagger.parameters['obj'] = {
+          in: 'body',
+          description: 'Add a user',
+          schema: { $ref: '#/definitions/CreateUser' }
+  } */
   let userJSON = req.body;
   let email = req.body.email;
 
@@ -36,6 +44,12 @@ const createUser = async (req, res) => {
 };
 // login
 const loginUser = async (req, res) => {
+  // #swagger.tags = ['Users']
+  /*  #swagger.parameters['obj'] = {
+          in: 'body',
+          description: 'Add a user',
+          schema: { $ref: '#/definitions/LoginUser' }
+  } */
   const { email, password } = req.body;
 
   try {
@@ -71,6 +85,7 @@ const loginUser = async (req, res) => {
 
 // renewToken
 const renewToken = async (req, res) => {
+  // #swagger.tags = ['Users']
   const { uid, name } = req;
 
   
@@ -84,6 +99,7 @@ const renewToken = async (req, res) => {
 };
 
 const getUsers = async (req, res) => {
+  // #swagger.tags = ['Users']
   const { page, limit } = req.query;
 
   const [users, count] = await Promise.all([

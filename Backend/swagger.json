@@ -5,7 +5,7 @@
     "description": "Este es el proyecto en trios correspondiente al curso de desarrollo web",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "localhost:7500",
   "basePath": "/",
   "schemes": [
     "http",
@@ -25,24 +25,17 @@
     },
     "/api/auth/new": {
       "post": {
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [
           {
-            "name": "body",
+            "name": "obj",
             "in": "body",
+            "description": "Add a user",
             "schema": {
-              "type": "object",
-              "properties": {
-                "email": {
-                  "example": "any"
-                },
-                "role": {
-                  "example": "any"
-                },
-                "password": {
-                  "example": "any"
-                }
-              }
+              "$ref": "#/definitions/CreateUser"
             }
           }
         ],
@@ -64,21 +57,17 @@
     },
     "/api/auth/login": {
       "post": {
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [
           {
-            "name": "body",
+            "name": "obj",
             "in": "body",
+            "description": "Add a user",
             "schema": {
-              "type": "object",
-              "properties": {
-                "email": {
-                  "example": "any"
-                },
-                "password": {
-                  "example": "any"
-                }
-              }
+              "$ref": "#/definitions/LoginUser"
             }
           }
         ],
@@ -97,6 +86,9 @@
     },
     "/api/auth/renew": {
       "get": {
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [
           {
@@ -117,6 +109,9 @@
     },
     "/api/auth/users": {
       "get": {
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [
           {
@@ -304,30 +299,6 @@
             "description": "OK"
           }
         }
-      },
-      "delete": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "x-token",
-            "in": "header",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
       }
     },
     "/api/phases/{idProject}": {
@@ -431,6 +402,38 @@
         }
       }
     },
+    "/api/phases/{id}": {
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-token",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/api/units/": {
       "get": {
         "description": "",
@@ -449,18 +452,6 @@
         "responses": {
           "200": {
             "description": "OK"
-          }
-        }
-      },
-      "delete": {
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
           }
         }
       }
@@ -512,6 +503,27 @@
     },
     "/api/units/update/{id}": {
       "patch": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/units/{id}": {
+      "delete": {
         "description": "",
         "parameters": [
           {
@@ -675,6 +687,42 @@
           "200": {
             "description": "OK"
           }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "CreateUser": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Mario Carmona Pérez"
+        },
+        "email": {
+          "type": "string",
+          "example": "Usario@correo.com"
+        },
+        "password": {
+          "type": "string",
+          "example": "london12"
+        },
+        "phone": {
+          "type": "number",
+          "example": 70155104
+        }
+      }
+    },
+    "LoginUser": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Mario Carmona Pérez"
+        },
+        "email": {
+          "type": "string",
+          "example": "Usario@correo.com"
         }
       }
     }

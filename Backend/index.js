@@ -2,12 +2,17 @@ const { v4: uuidv4 } = require("uuid");
 const express = require("express");
 const aws = require("aws-sdk");
 const multer = require("multer");
-//const swaggerUI = requiere(swagger-ui-express);
+
 const multerS3 = require("multer-s3");
 const { dbConnection } = require("./database/config");
 const cors = require("cors");
 const path = require("path");
 require("dotenv").config();
+const swaggerUI = require("swagger-ui-express");
+const swaggerFile = require('./swagger.json');
+
+
+
 
 aws.config.update({
   accessKeyId: process.env.AWS_KEY_ID,
@@ -48,6 +53,7 @@ server.use("/api/projects", require("./routes/projects"));
 server.use("/api/phases", require("./routes/phases"));
 server.use("/api/units", require("./routes/units"));
 server.use("/api/user", require("./routes/users"));
+server.use("/docs", swaggerUI.serve, swaggerUI.setup(swaggerFile));
 
 
 const uploadMultiple = upload.fields([{ name: "file", maxCount: 5 }]);
@@ -67,7 +73,6 @@ server.post("/upload", uploadMultiple, function (req, res) {
   });
 });
 
-//server.use("/docs", swaggerUI.serve, swaggerUI.setup(swaggerFile));
 
 server.use(express.static("public"));
 console.log(`The server is running at http://localhost: ${process.env.PORT}`);

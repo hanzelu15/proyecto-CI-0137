@@ -1,7 +1,10 @@
 const User = require("../models/user");
 const bcryptjs = require("bcryptjs");
 
+ // #swagger.tags = ['Users']
+
 const getUserById = async (req, res) => {
+   // #swagger.tags = ['Users']
   let user = await User.findById(req.params.id);
   if (!user) {
     return res.json({
@@ -15,6 +18,7 @@ const getUserById = async (req, res) => {
 };
 //Update user
 const updateUserData = async (req, res) => {
+   // #swagger.tags = ['Users']
   if (req.body.data.password !== undefined) {
     let pass = req.body.data.password;
     req.body.data.password = bcryptjs.hashSync(pass, 8);
@@ -34,6 +38,7 @@ const updateUserData = async (req, res) => {
 };
 
 const usersByRole = async (req, res) => {
+   // #swagger.tags = ['Users']
   if (req.params.role === "ALL" || req.params.role == undefined) {
     users = await User.find();
   } else {
@@ -46,6 +51,7 @@ const usersByRole = async (req, res) => {
 };
 
 const getAllUsers = async (req, res) => {
+   // #swagger.tags = ['Users']
   const { id, page, limit } = req.query;
   console.log("En getUsers controller  ", id);
   const [users, count] = await Promise.all([

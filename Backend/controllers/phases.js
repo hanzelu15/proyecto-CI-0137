@@ -1,7 +1,10 @@
 const Phase = require("../models/Phase");
 const Project = require("../models/Project");
 
+// #swagger.tags = ['Phases']
+
 const getPhases = async (req, res) => {
+  // #swagger.tags = ['Phases']
   const { page, limit } = req.query;
   const [phase, count] = await Promise.all([
     Phase.find()
@@ -16,6 +19,7 @@ const getPhases = async (req, res) => {
   });
 };
 const getPhasesByProject = async (req, res) => {
+  // #swagger.tags = ['Phases']
   const project = await Project.findById(req.params.idProject);
   if (project) {
     const { page, limit } = req.query;
@@ -38,6 +42,13 @@ const getPhasesByProject = async (req, res) => {
   }
 };
 const createPhase = async (req, res) => {
+// #swagger.tags = ['Phases']
+  /*  #swagger.parameters['obj'] = {
+          in: 'body',
+          description: 'Add a phase',
+          schema: { $ref: '#/definitions/CreatePhase' }
+  } */
+
   console.log(req.body);
   const uid = req.body.uid;
 
@@ -62,6 +73,7 @@ const createPhase = async (req, res) => {
 };
 
 const updatePhase = async (req, res) => {
+  // #swagger.tags = ['Phases']
   const phase = await Project.findById(req.params.id);
 
   if (!phase) {
@@ -79,6 +91,7 @@ const updatePhase = async (req, res) => {
 };
 
 const deletePhase = async (req, res) => {
+  // #swagger.tags = ['Phases']
   const phase = await Phase.findById(req.params.id);
 
   if (!phase) {

@@ -1,7 +1,10 @@
 const Unit = require("../models/Unit");
 const Phase = require("../models/Phase");
 
+  // #swagger.tags = ['Units']
+
 const getUnit = async (req, res) => {
+  // #swagger.tags = ['Units']
   const { page, limit } = req.query;
   const [unit, count] = await Promise.all([
     Unit.find()
@@ -16,6 +19,12 @@ const getUnit = async (req, res) => {
   });
 };
 const createUnit = async(req, res) => {
+  // #swagger.tags = ['Units']
+  /*  #swagger.parameters['obj'] = {
+          in: 'body',
+          description: 'add unit',
+          schema: { $ref: '#/definitions/CreateUnit' }
+  } */
   console.log(req.body);
   const data = req.body;
   const unit = new Unit({
@@ -38,6 +47,7 @@ const createUnit = async(req, res) => {
 };
 
 const getUnitsByPhase = async (req, res) => {
+  // #swagger.tags = ['Units']
   const phase = await Phase.findById(req.params.idPhase);
   if (phase) {
     const { page, limit } = req.query;
@@ -62,6 +72,7 @@ const getUnitsByPhase = async (req, res) => {
 
 
 const updateUnit = async(req, res) => {
+  // #swagger.tags = ['Units']
   const unit = await Unit.findById(req.params.id);
 
   if (!unit) {
@@ -83,6 +94,7 @@ const updateUnit = async(req, res) => {
 };
 
 const deleteUnit = async(req, res) => {
+  // #swagger.tags = ['Units']
   const phase = await Phase.findById(req.params.id);
 
   if (!phase) {

@@ -1,6 +1,10 @@
 const Project = require("../models/Project");
 
+// #swagger.tags = ['Projects']
+
 const getAllProjects = async (req, res) => {
+  // #swagger.tags = ['Projects']
+  
   const { page, limit } = req.query;
   const [projects, count] = await Promise.all([
     Project.find()
@@ -15,6 +19,12 @@ const getAllProjects = async (req, res) => {
   });
 };
 const createProject = async (req, res) => {
+  // #swagger.tags = ['Projects']
+  /*  #swagger.parameters['obj'] = {
+          in: 'body',
+          description: 'Add a project',
+          schema: { $ref: '#/definitions/CreateProject' }
+  } */
   try {
     const project = new Project(req.body);
     const exists = await Project.exists({ name: req.body.name });
@@ -40,6 +50,7 @@ const createProject = async (req, res) => {
 };
 
 const updateProject = async (req, res) => {
+  // #swagger.tags = ['Projects']
   const project = await Project.findById(req.params.id);
 
   if (!project) {
@@ -61,6 +72,7 @@ const updateProject = async (req, res) => {
 };
 
 const deleteProject = async (req, res) => {
+  // #swagger.tags = ['Projects']
   const project = await Project.findById(req.params.id);
 
   if (!project) {

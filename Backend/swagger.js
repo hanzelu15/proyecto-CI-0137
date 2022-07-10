@@ -17,8 +17,24 @@ const doc = {
       LoginUser:{
         name: "Mario Carmona Pérez",
         email: "Usario@correo.com",
-      }
-
+      },
+      CreateProject:{
+        name: "Escazu URBANO",
+        location: "Escazu",
+        description:"proyecto inmobiliario que consta de tres fases de 20 unidades cada una"
+      },
+      CreatePhase:{
+        name: "interseccion A",
+        location: "Sur",
+        description:"Fase que consta de 20 casas"
+      },
+      CreateUnit:{
+        name: "Kylian Mbappe",
+        number: "J-25",
+        description:"Casa de dos plantas",
+        finished: true,
+        delivered: false
+      },
     }
   };
   

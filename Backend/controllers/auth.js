@@ -3,7 +3,7 @@ const { generateJWT } = require("../helpers/jws");
 
 const User = require("../models/user");
 
-  // #swagger.tags = ['UserAuth']
+  // #swagger.tags = ['Users']
 
 // register
 const createUser = async (req, res) => {
@@ -47,7 +47,7 @@ const loginUser = async (req, res) => {
   // #swagger.tags = ['Users']
   /*  #swagger.parameters['obj'] = {
           in: 'body',
-          description: 'Add a user',
+          description: 'Log user',
           schema: { $ref: '#/definitions/LoginUser' }
   } */
   const { email, password } = req.body;

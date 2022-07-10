@@ -65,7 +65,7 @@
           {
             "name": "obj",
             "in": "body",
-            "description": "Add a user",
+            "description": "Log user",
             "schema": {
               "$ref": "#/definitions/LoginUser"
             }
@@ -145,6 +145,9 @@
     },
     "/api/projects/": {
       "get": {
+        "tags": [
+          "Projects"
+        ],
         "description": "",
         "parameters": [
           {
@@ -167,6 +170,9 @@
     },
     "/api/projects/new": {
       "post": {
+        "tags": [
+          "Projects"
+        ],
         "description": "",
         "parameters": [
           {
@@ -175,15 +181,11 @@
             "type": "string"
           },
           {
-            "name": "body",
+            "name": "obj",
             "in": "body",
+            "description": "Add a project",
             "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "example": "any"
-                }
-              }
+              "$ref": "#/definitions/CreateProject"
             }
           }
         ],
@@ -205,6 +207,9 @@
     },
     "/api/projects/update/{id}": {
       "patch": {
+        "tags": [
+          "Projects"
+        ],
         "description": "",
         "parameters": [
           {
@@ -249,6 +254,9 @@
     },
     "/api/projects/delete/{id}": {
       "delete": {
+        "tags": [
+          "Projects"
+        ],
         "description": "",
         "parameters": [
           {
@@ -281,6 +289,9 @@
     },
     "/api/phases/": {
       "get": {
+        "tags": [
+          "Phases"
+        ],
         "description": "",
         "parameters": [
           {
@@ -303,6 +314,9 @@
     },
     "/api/phases/{idProject}": {
       "get": {
+        "tags": [
+          "Phases"
+        ],
         "description": "",
         "parameters": [
           {
@@ -334,6 +348,9 @@
     },
     "/api/phases/new": {
       "post": {
+        "tags": [
+          "Phases"
+        ],
         "description": "",
         "parameters": [
           {
@@ -342,15 +359,11 @@
             "type": "string"
           },
           {
-            "name": "body",
+            "name": "obj",
             "in": "body",
+            "description": "Add a phase",
             "schema": {
-              "type": "object",
-              "properties": {
-                "uid": {
-                  "example": "any"
-                }
-              }
+              "$ref": "#/definitions/CreatePhase"
             }
           }
         ],
@@ -372,6 +385,9 @@
     },
     "/api/phases/update/{id}": {
       "patch": {
+        "tags": [
+          "Phases"
+        ],
         "description": "",
         "parameters": [
           {
@@ -404,6 +420,9 @@
     },
     "/api/phases/{id}": {
       "delete": {
+        "tags": [
+          "Phases"
+        ],
         "description": "",
         "parameters": [
           {
@@ -436,6 +455,9 @@
     },
     "/api/units/": {
       "get": {
+        "tags": [
+          "Units"
+        ],
         "description": "",
         "parameters": [
           {
@@ -458,6 +480,9 @@
     },
     "/api/units/{idPhase}": {
       "get": {
+        "tags": [
+          "Units"
+        ],
         "description": "",
         "parameters": [
           {
@@ -489,8 +514,20 @@
     },
     "/api/units/new": {
       "post": {
+        "tags": [
+          "Units"
+        ],
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "add unit",
+            "schema": {
+              "$ref": "#/definitions/CreateUnit"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -503,6 +540,9 @@
     },
     "/api/units/update/{id}": {
       "patch": {
+        "tags": [
+          "Units"
+        ],
         "description": "",
         "parameters": [
           {
@@ -524,6 +564,9 @@
     },
     "/api/units/{id}": {
       "delete": {
+        "tags": [
+          "Units"
+        ],
         "description": "",
         "parameters": [
           {
@@ -545,6 +588,9 @@
     },
     "/api/user/userlist/{role}": {
       "get": {
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [
           {
@@ -563,6 +609,9 @@
     },
     "/api/user/{id}": {
       "get": {
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [
           {
@@ -589,6 +638,9 @@
     },
     "/api/user/update/{id}": {
       "patch": {
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [
           {
@@ -627,6 +679,9 @@
     },
     "/api/user/update-password/{id}": {
       "patch": {
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [
           {
@@ -665,6 +720,9 @@
     },
     "/api/user/": {
       "get": {
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [
           {
@@ -723,6 +781,65 @@
         "email": {
           "type": "string",
           "example": "Usario@correo.com"
+        }
+      }
+    },
+    "CreateProject": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Escazu URBANO"
+        },
+        "location": {
+          "type": "string",
+          "example": "Escazu"
+        },
+        "description": {
+          "type": "string",
+          "example": "proyecto inmobiliario que consta de tres fases de 20 unidades cada una"
+        }
+      }
+    },
+    "CreatePhase": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "interseccion A"
+        },
+        "location": {
+          "type": "string",
+          "example": "Sur"
+        },
+        "description": {
+          "type": "string",
+          "example": "Fase que consta de 20 casas"
+        }
+      }
+    },
+    "CreateUnit": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Kylian Mbappe"
+        },
+        "number": {
+          "type": "string",
+          "example": "J-25"
+        },
+        "description": {
+          "type": "string",
+          "example": "Casa de dos plantas"
+        },
+        "finished": {
+          "type": "boolean",
+          "example": true
+        },
+        "delivered": {
+          "type": "boolean",
+          "example": false
         }
       }
     }

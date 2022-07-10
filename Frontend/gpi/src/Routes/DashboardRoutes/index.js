@@ -10,6 +10,8 @@ import { PhasesView } from "../../Pages/Phases/PhasesView";
 import { CreatePhase } from "../../Pages/Phases/CreatePhase";
 import { UnitView } from "../../Pages/units/UnitView";
 import { CreateUnit } from "../../Pages/units/CreateUnit";
+import { CreateExtra } from "../../Pages/Extras/CreateExtra";
+import { ExtrasView } from "../../Pages/Extras/ExtrasView";
 import { UserAdministration } from "../../Pages/UserAdministration";
 
 export const DashboardRoutes = () => {
@@ -32,6 +34,9 @@ export const DashboardRoutes = () => {
             <Route path="perfil" element={<Perfil />} />
             <Route path="new-phase/:project" element={<CreatePhase />} />
             <Route path="new-unit/:phase" element={<CreateUnit />} />
+            <Route path="unit/:name" element={<UnitView />} />
+            <Route path="new-extra/:unit" element={<CreateExtra />} />
+            <Route path="extra/:name" element={<ExtrasView />} />
             <Route path="userAdministration" element={<UserAdministration />} />
           </Routes>
         </div>

@@ -7,7 +7,7 @@ import { deletePhase } from "../../../Services/PhaseService";
 import { useAuthStore } from "../../../hooks";
 import { deleteUnit, updateUnit } from "../../../Services/UnitService";
 
-export const UnitInfo = ({unit}) => {
+export const UnitInfo = ({ unit, query }) => {
   const { user } = useAuthStore();
   const [isEditable, setIsEditable] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -38,9 +38,10 @@ export const UnitInfo = ({unit}) => {
       showCancelButton: true,
       confirmButtonText: "Si, Borrar!",
       cancelButtonText: "No, Cancelar!",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
         deleteUnit(unit._id);
+        await query(0);
         Swal.fire("Borrado!", "Su Unidad fue borrada.", "success");
         navigate(-1);
       }
@@ -52,23 +53,32 @@ export const UnitInfo = ({unit}) => {
   };
   return (
     <header className="flex flex-col items-center w-full py-5">
-      <div className="flex justify-between flex-col w-full mb-5 items-end" >
+      <div className="flex justify-between flex-col w-full mb-5 items-end">
         <div className="mb-5">
           <button
-            className={`btn-green rounded-full mr-5 ${!isEditable ? "hidden" : ""}`}
+            className={`btn-green rounded-full mr-5 ${
+              !isEditable ? "hidden" : ""
+            }`}
             onClick={handleEdit}
           >
             {" "}
             <MdSave className="text-xl md:text-xl" />{" "}
           </button>
           <button
-            className={`${user.role!=="ADMIN" ? "hidden" : ""} btn-green rounded-full mr-5`}
+            className={`${
+              user.role !== "ADMIN" ? "hidden" : ""
+            } btn-green rounded-full mr-5`}
             onClick={() => setIsEditable(!isEditable)}
           >
             {" "}
             <MdModeEdit className="text-xl md:text-xl" />{" "}
           </button>
-          <button className={`${user.role!=="ADMIN" ? "hidden" : ""} rounded-full btn-green`}onClick={handleDelete}>
+          <button
+            className={`${
+              user.role !== "ADMIN" ? "hidden" : ""
+            } rounded-full btn-green`}
+            onClick={handleDelete}
+          >
             {" "}
             <MdDelete className="text-xl md:text-xl" />{" "}
           </button>
@@ -103,9 +113,8 @@ export const UnitInfo = ({unit}) => {
               })}
             />
           </div>
-          
         </form>
       </div>
     </header>
-  )
-}
+  );
+};

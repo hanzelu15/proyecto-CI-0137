@@ -51,10 +51,10 @@ const getExtrasByUnit = async (req, res) => {
   if (unit) {
     const { page, limit } = req.query;
     const [extras, count] = await Promise.all([
-       Extra.find({ phase: req.params.idUnit })
+       Extra.find({ unit: req.params.idUnit })
         .skip(page * limit || 0)
         .limit(limit || 5),
-        Extra.count(),
+        Extra.count({ unit: req.params.idUnit }),
     ]);
     res.json({
       ok: true,

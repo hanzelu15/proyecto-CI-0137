@@ -10,7 +10,9 @@ const ExtraSchema = Schema({
         type: String,
         require: true
     },
-
+    status:{
+        type: String,
+    },
     unit:{
         type: Schema.Types.ObjectId,
         ref: 'Phase'

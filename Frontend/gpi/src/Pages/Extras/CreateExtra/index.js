@@ -75,6 +75,7 @@ export const CreateExtra = () => {
               </option>
               <option value="Muebles">Muebles</option>
               <option value="Acabado">Acabado</option>
+              <option value="Obra Gris">Obra Gris</option>
             </select>
           </div>
           <div className="relative z-0 w-full mb-10 group ">
@@ -91,7 +92,7 @@ export const CreateExtra = () => {
           </div>
 
           <div className="flex justify-end  items-center mb-10">
-            <input type="submit" value="Agregar Extra" className="btn-green" />
+            <input type="submit" value="Agregar Extra" className="btn-green rounded-lg" />
           </div>
         </form>
       </div>

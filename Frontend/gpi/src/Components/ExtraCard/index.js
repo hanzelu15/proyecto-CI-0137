@@ -6,8 +6,18 @@ export const ExtraCard = ( {extra} ) => {
     const [color, setColor] = useState([]);
     useEffect(() => {
      switch (extra.type) {
-        case "amueblado":
-            setColor("#000");
+        case "Obra Gris":
+            setColor("bg-slate-500");
+            break;
+        
+        case "Electromecanica":
+            setColor("bg-slate-800");
+            break;
+        case "Muebles":
+            setColor("bg-red-600");
+            break;
+        case "Acabado":
+            setColor("bg-indigo-600");
             break;
      
         default:
@@ -23,11 +33,11 @@ export const ExtraCard = ( {extra} ) => {
             <Link to ={`/extra/${extra._id}`}
             state={extra}
 
-            className = 'bg-white h-20 w-full rounded-lg flex justify-between items-center shadow-md px-5 hover:bg-gray-200'>
+            className = {`${color} h-20 w-full rounded-lg flex justify-between items-center shadow-md px-5 hover:bg-gray-200"`}>
 
-            <h4 className='text-xl md:text-2xl'> {extra.name}</h4>
+            <h4 className='text-xl md:text-2xl text-white'> {extra.name}</h4>
             <div className=' h-20 flex flex-col justify-end py-2'>
-                <p className='flex items-center'>{extra.type}</p>
+                <p className='flex items-center text-white'>{extra.status}</p>
             </div>
             </Link>
         }

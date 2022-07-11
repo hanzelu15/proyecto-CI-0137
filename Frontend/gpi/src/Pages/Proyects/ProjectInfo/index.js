@@ -50,7 +50,7 @@ export const ProjectInfo = ({ project, manager, query }) => {
   const watchAllFields = watch();
 
   const handleEdit = async () => {
-    console.log(watchAllFields);
+   
     const response = await updateProject(watchAllFields);
     setIsEditable(!isEditable);
     if (response.ok) {

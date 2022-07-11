@@ -10,7 +10,7 @@ export const ExtrasView = () => {
   const { user } = useAuthStore();
   const [isEditable, setIsEditable] = useState(false);
   const location = useLocation();
-  const extra = location.state;
+  const [extra, setExtra] = useState(location.state);
   let navigate = useNavigate();
   const {
     register,
@@ -21,6 +21,8 @@ export const ExtrasView = () => {
   const watchAllFields = watch();
   const handleEdit = async () => {
     const response = await updateExtra(watchAllFields);
+    console.log("response es ",response.updatedExtra);
+    setExtra(response.updatedExtra);
     setIsEditable(!isEditable);
     if (response.ok) {
       return Swal.fire("Exito!", "Se ha editado el proyecto!", "success");

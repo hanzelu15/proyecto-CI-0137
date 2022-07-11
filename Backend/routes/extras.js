@@ -17,6 +17,6 @@ const router = Router();
 router.get("/", getExtra);
 router.get("/:idUnit", getExtrasByUnit);
 router.post("/new",  [validateSchema(ExtraSchema),validateJwt,validatePermissions],createExtra);
-router.patch("/update/:id", [validateSchema(ExtraSchema),validateJwt,validatePermissions], updateExtra);
+router.patch("/update/:id", [validateJwt,validatePermissions], updateExtra);
 router.delete("/:id",  [validateJwt,validatePermissions],deleteExtra);
 module.exports = router;

@@ -57,10 +57,10 @@ const updateProject = async (req, res) => {
     res.status(400);
     throw new Error("Project not found");
   }
-
+  console.log("sadad",req.body);
   const updatedProject = await Project.findByIdAndUpdate(
     req.params.id,
-    req.body.data );
+    req.body );
   res.json({
     ok: true,
     updatedProject,

@@ -73,7 +73,7 @@ const getExtrasByUnit = async (req, res) => {
 const updateExtra = async(req, res) => {
   // #swagger.tags = ['Extras']
   const extra = await Extra.findById(req.params.id);
-
+  console.log( "body es ", req.body);
   if (!extra) {
     res.status(400);
     throw new Error("Extra not found");
@@ -81,11 +81,7 @@ const updateExtra = async(req, res) => {
 
   const updatedExtra = await Extra.findByIdAndUpdate(
     req.params.id,
-    req.body,
-    {
-      new: true,
-    }
-  );
+    req.body,{ new: "true"});
   res.json({
     ok: true,
     updatedExtra,

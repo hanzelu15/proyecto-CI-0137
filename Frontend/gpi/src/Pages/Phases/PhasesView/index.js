@@ -28,11 +28,11 @@ export const PhasesView = () => {
   }
   return (
     <div className="flex flex-col justify-items-center items-center responsive-width-component">
-      <h2 className="text-4xl font-semibold pt-10 items-start">{phase.name}</h2>
+      <h2 className="text-4xl font-semibold pt-10 items-start">{phase.name} <span className="font-normal"></span></h2>
       <PhaseInfo phase={phase}></PhaseInfo>
       <section className="w-full flex flex-col gap-5"> 
         <div className="flex w-full  justify-between">
-          <h4 className="text-3xl"> </h4>
+          <h4 className="text-3xl font-normal">Unidades: </h4>
           <Link to={`/new-unit/${phase.name}`} state={phase} className={`${user.role!=="ADMIN" ? "hidden" : ""} btn-green rounded-lg h-fit"`}>Agregar unidad</Link>
           
         </div>

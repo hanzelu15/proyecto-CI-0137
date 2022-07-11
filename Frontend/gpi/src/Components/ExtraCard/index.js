@@ -37,7 +37,7 @@ export const ExtraCard = ( {extra} ) => {
 
             <h4 className='text-xl md:text-2xl text-white'> {extra.name}</h4>
             <div className=' h-20 flex flex-col justify-end py-2'>
-                <p className='flex items-center text-white'>{extra.type}</p>
+                <p className='flex items-center text-white'>{extra.status}</p>
             </div>
             </Link>
         }

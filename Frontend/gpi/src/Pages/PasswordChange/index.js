@@ -2,12 +2,11 @@ import React, { useState, useRef  } from "react";
 import { useForm } from "react-hook-form";
 import { MdPerson, MdOutlineEmail, MdLock, MdPhone } from "react-icons/md";
 import { useAuthStore } from "../../hooks";
-import { updateUserData } from "../../Services/UserService.js";
 import Swal from "sweetalert2";
 import logo from "../../Assets/Imagotipo.png";
 
 export const PasswordChange = () => {
-  const { checkCode } = useAuthStore();
+  const { checkCode, passwordUpdate, userCode } = useAuthStore();
   const {
     register,
     handleSubmit,
@@ -19,29 +18,68 @@ export const PasswordChange = () => {
     handleSubmit: handleSubmit2,
     watch,
   } = useForm();
+  let update;
+  const [userID, setUserID] = useState();
   const onSubmit = (data) => {
     console.log(data);
-    let responseValue = checkCode(data);
-    setIsDisabled(!isDisabled);
-    setTimeout(() => {
-      if (responseValue.ok) {
-        Swal.fire(
-          {
-            icon: 'success',
-            title: 'Bien!',
-            text: 'Código correcto, proceda a cambiar la contraseña en el espacio asignado!',
-          }
-        );
-      } else {
-        Swal.fire(
-          {
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Actualización de datos fallida!',
-          }
-        );
-      }
-    }, 100);
+    checkCode(data).then((data2) => {
+      console.log(data2);
+      setTimeout(() => {
+        if (data2 !== undefined) {
+          setIsDisabled(!isDisabled)
+          const update = data2.cd.userID;
+          setUserID(update);
+          console.log(update);
+          Swal.fire(
+            {
+              icon: 'success',
+              title: 'Bien!',
+              text: 'Código correcto, proceda a cambiar la contraseña en el espacio asignado',
+            }
+          );
+        } else {
+          Swal.fire(
+            {
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Parece ser que el código no es valido, intente enviar uno nuevo!',
+            }
+          );
+        }
+      }, 100);
+    });;
+  };
+  const onSubmit2 = (data) => {
+    console.log("onSubmit2: ", data, "userID", userID);
+    if(data.password_repeat !== undefined){
+      delete data.password_repeat;
+    }
+    console.log("Update en onSubmit2: ", update);
+    passwordUpdate(userID, data).then((data2) => {
+      console.log(data2);
+      setTimeout(() => {
+        if (data2.ok) {
+          setIsDisabled(!isDisabled)
+          Swal.fire(
+            {
+              icon: 'success',
+              title: 'Bien!',
+              text: 'Contraseña cambiada correctamente, será redirigido a login para que pueda ingresar con su contraseña nueva',
+            }
+          ).then(function() {
+            window.location = "/login";
+        });
+        } else {
+          Swal.fire(
+            {
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Actualización de contraseña fallida!',
+            }
+          );
+        }
+      }, 100);
+    });;
   };
   const password = useRef({});
   password.current = watch("password", "");
@@ -52,14 +90,8 @@ export const PasswordChange = () => {
         <div className="mb-14">
           <img src={logo} className="w-[300px] md:w-[375px]" alt="Logo GPI" />
         </div>
-        <h3 className="text-4xl py-5">Digite su código</h3>
-        <button
-          className=" self-end tracking-wide text-[22px] text-white w-fit bg-orange-50 hover:bg-orange-100 focus:ring-4 focus:ring-blue-300 font-medium text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-          onClick={() => setIsDisabled(!isDisabled)}
-        >
-          Editar
-        </button>
-        <form className="w-[375px] flex flex-col" onSubmit={handleSubmit(onSubmit)}>
+        <h3 className={`${!isDisabled ? "hidden" : ""} text-4xl py-5`}>Digite su código</h3>
+        <form className={`${!isDisabled ? "hidden" : ""} first-line:w-[375px] flex flex-col`} onSubmit={handleSubmit(onSubmit)}>
           <div className="flex items-center">
             <input
               type="text"
@@ -68,7 +100,6 @@ export const PasswordChange = () => {
               placeholder=" "
               defaultValue=""
               required
-              disabled={isDisabled}
               {...register("code", {
                 required: "Debe especificar una código",
               })}
@@ -76,16 +107,16 @@ export const PasswordChange = () => {
           </div>
           <button
             type="submit"
-            className="self-end  text-white bg-orange-50 hover:bg-orange-100 focus:ring-4 focus:ring-blue-300 font-medium text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+            className="self-end mt-4 text-white bg-orange-50 hover:bg-orange-100 focus:ring-4 focus:ring-blue-300 font-medium text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
           >
             Verificar
           </button>
         </form>
 
-        <div className=" flex flex-col items-center pt-20">
+        <div className={`${isDisabled ? "hidden" : ""} flex flex-col items-center pt-20`}>
           <h4 className="mb-5 text-3xl md:text-4xl">Cambiar contraseña</h4>
           <form
-            onSubmit={handleSubmit2(onSubmit)}
+            onSubmit={handleSubmit2(onSubmit2)}
             className="w[300px] md:w-[375px]"
           >
             {/* PASSWORD */}

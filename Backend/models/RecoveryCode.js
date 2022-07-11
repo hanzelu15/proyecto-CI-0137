@@ -10,7 +10,10 @@ const RecoverySchema = Schema({
         type: String,
         require: true
     },
-
+    expiration:{ 
+        type: Date, 
+        require: true 
+    },
 });
 
 module.exports = model('RecoveryCode', RecoverySchema);

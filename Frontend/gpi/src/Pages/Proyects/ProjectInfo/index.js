@@ -9,12 +9,31 @@ import { getUsersByRole } from "../../../Services/UserService";
 import { useAuthStore } from "../../../hooks";
 
 
-export const ProjectInfo = ({ project, manager }) => {
+export const ProjectInfo = ({ project, manager, query }) => {
   const { user } = useAuthStore();
   const [isEditable, setIsEditable] = useState(false);
   const [loading, setLoading] = useState(true);
   const [managers, setManagers] = useState([]);
   let navigate = useNavigate();
+  
+  const handleDelete = async () => {
+    Swal.fire({
+      title: "Desea borrar este proyecto?",
+      text: "Esta acción no es reversible!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Si, Borrar!",
+      cancelButtonText: "No, Cancelar!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        console.log(project._id);
+        deleteProject(project._id);
+        Swal.fire("Borrado!", "Su Proyecto fue borrado.", "success");
+        await query(0);
+        navigate(-1);
+      }
+    });
+  };
   useEffect(() => {
     getUsersByRole("ADMIN").then((data) => {
       setManagers(data.users);
@@ -29,23 +48,9 @@ export const ProjectInfo = ({ project, manager }) => {
   } = useForm({ defaultValues: project });
 
   const watchAllFields = watch();
-  const handleDelete = () => {
-    Swal.fire({
-      title: "Desea borrar este proyecto?",
-      text: "Esta acción no es reversible!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText: "Si, Borrar!",
-      cancelButtonText: "No, Cancelar!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        deleteProject(project._id);
-        Swal.fire("Borrado!", "Su Proyecto fue borrado.", "success");
-        navigate(-1);
-      }
-    });
-  };
+
   const handleEdit = async () => {
+    console.log(watchAllFields);
     const response = await updateProject(watchAllFields);
     setIsEditable(!isEditable);
     if (response.ok) {
@@ -136,9 +141,7 @@ export const ProjectInfo = ({ project, manager }) => {
               rows={8}
               type="textarea"
               className="p-3 rounded-lg border disabled:border-transparent"
-              defaultValue={
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tincidunt elementum nunc at congue. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris condimentum, "
-              }
+              defaultValue={project.description}
               disabled={!isEditable}
             />
           </div>

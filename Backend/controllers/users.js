@@ -26,7 +26,6 @@ const updateUserData = async (req, res) => {
   } else {
     console.log("Password undefined");
   }
-  console.log(req.body.data);
   const updatedUser = await User.findByIdAndUpdate(
     req.params.id,
     req.body.data

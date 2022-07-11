@@ -11,9 +11,8 @@ export async function getAllProjects(page = 0, limit = 5) {
 
 export async function updateProject(data) {
   try {
-    const response = await gpiAPI.patch(`/projects/update/${data._id}`, {
-      data,
-    });
+    const response = await gpiAPI.patch(`/projects/update/${data._id}`,
+      data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -30,7 +29,7 @@ export async function createProject(data) {
 }
 export async function deleteProject(id) {
   try {
-    const response = await gpiAPI.delete(`/projects/${id}` );
+    const response = await gpiAPI.delete(`/projects/delete/${id}`);
     return response.data;
   } catch (error) {
     console.error(error);

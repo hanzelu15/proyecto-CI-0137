@@ -22,7 +22,6 @@ export const Perfil = () => {
     if (data.password_repeat !== undefined) {
       delete data.password_repeat;
     }
-    console.log(data);
     let responseValue = updateUserData(data, user.uid);
     setIsDisabled(!isDisabled);
     setTimeout(() => {

@@ -21,15 +21,12 @@ export const PasswordChange = () => {
   let update;
   const [userID, setUserID] = useState();
   const onSubmit = (data) => {
-    console.log(data);
     checkCode(data).then((data2) => {
-      console.log(data2);
       setTimeout(() => {
         if (data2 !== undefined) {
           setIsDisabled(!isDisabled)
           const update = data2.cd.userID;
           setUserID(update);
-          console.log(update);
           Swal.fire(
             {
               icon: 'success',
@@ -50,13 +47,10 @@ export const PasswordChange = () => {
     });;
   };
   const onSubmit2 = (data) => {
-    console.log("onSubmit2: ", data, "userID", userID);
     if(data.password_repeat !== undefined){
       delete data.password_repeat;
     }
-    console.log("Update en onSubmit2: ", update);
     passwordUpdate(userID, data).then((data2) => {
-      console.log(data2);
       setTimeout(() => {
         if (data2.ok) {
           setIsDisabled(!isDisabled)

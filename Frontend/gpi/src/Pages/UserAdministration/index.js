@@ -13,7 +13,6 @@ export const UserAdministration = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    console.log("En UserAdmin  ", user.uid);
     getAllUsers(user.uid).then((resp) => {
       setData(resp);
       setloading(false);

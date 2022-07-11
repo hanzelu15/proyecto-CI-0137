@@ -49,7 +49,6 @@ const createPhase = async (req, res) => {
           schema: { $ref: '#/definitions/CreatePhase' }
   } */
 
-  console.log(req.body);
   const uid = req.body.uid;
 
   const phase = new Phase({

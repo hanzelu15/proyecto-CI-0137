@@ -18,7 +18,6 @@ export const PasswordRecovery = () => {
 
   const onSubmit = (data) => {
     let responseValue = sendRecoveryMail(data);
-    console.log(responseValue);
     setTimeout(() => {
       if (responseValue) {
         Swal.fire(

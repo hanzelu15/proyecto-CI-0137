@@ -78,7 +78,7 @@ export const CreatePhase = () => {
           </div>
 
           <div className="flex justify-end  items-center mb-14">
-            <input type="submit" value="Agregar Fase" className="btn-green" />
+            <input type="submit" value="Agregar Fase" className="btn-green rounded-lg" />
           </div>
         </form>
       </div>

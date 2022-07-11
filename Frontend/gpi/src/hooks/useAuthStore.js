@@ -59,43 +59,33 @@ export const useAuthStore = () => {
     }
   };
   const sendRecoveryMail = async (data) => {
-    console.log("En auth store ", data.email)
-    //dispatch(onChecking());
+    console.log("En auth store ", data.email);
     try {
       const response = await gpiAPI.post(`auth/password-recovery/`, { data });
       console.log("En auth store antes del return", response)
       return response.data;
-      /*const { data } = await gpiAPI.post("/password-recovery/", {data});
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("token-init-date", new Date().getTime());
-      console.log(data);
-      dispatch(onLogin(data.user));*/
     } catch (error) {
       console.log(error);
-      /*dispatch(onLogout(error.response.data?.msg || "error inesperado"));
-      setTimeout(() => {
-        dispatch(clearErrorMessage());
-      }, 10000);*/
     }
   };
   const checkCode = async (data) => {
-    console.log("En auth store ", data.code)
-    //dispatch(onChecking());
+    console.log("En auth store ", data.code);
     try {
       const response = await gpiAPI.post(`auth/code-check/`, { data });
       console.log("En code check antes del return", response)
       return response.data;
-      /*const { data } = await gpiAPI.post("/password-recovery/", {data});
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("token-init-date", new Date().getTime());
-      console.log(data);
-      dispatch(onLogin(data.user));*/
     } catch (error) {
       console.log(error);
-      /*dispatch(onLogout(error.response.data?.msg || "error inesperado"));
-      setTimeout(() => {
-        dispatch(clearErrorMessage());
-      }, 10000);*/
+    }
+  };
+  const passwordUpdate = async (userID ,data) => {
+    console.log("En auth store ", data, " userID ", userID);
+    try {
+      const response = await gpiAPI.post(`auth/password-update/`, { userID, data });
+      console.log("En code check antes del return", response)
+      return response.data;
+    } catch (error) {
+      console.log(error);
     }
   };
   return {
@@ -108,5 +98,6 @@ export const useAuthStore = () => {
     checkAuthToken,
     sendRecoveryMail,
     checkCode,
+    passwordUpdate,
   };
 };

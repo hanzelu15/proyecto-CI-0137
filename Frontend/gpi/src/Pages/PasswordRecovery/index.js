@@ -18,6 +18,7 @@ export const PasswordRecovery = () => {
 
   const onSubmit = (data) => {
     let responseValue = sendRecoveryMail(data);
+    console.log(responseValue);
     setTimeout(() => {
       if (responseValue) {
         Swal.fire(
@@ -27,7 +28,7 @@ export const PasswordRecovery = () => {
             text: 'Se envió el código a su correo electrónico, al clickear ok será redirigido a una página donde donde podrá restablecer su contraseña.',
           }
         ).then(function() {
-          window.location = "/welcome";
+          window.location = "/password-change";
       });
       } else {
         Swal.fire(

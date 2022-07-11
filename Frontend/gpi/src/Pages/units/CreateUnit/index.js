@@ -90,7 +90,7 @@ export const CreateUnit = () => {
             </select>
           </div>
           <div className="flex justify-end  items-center mb-14">
-            <input type="submit" value="Agregar Unidad" className="btn-green" />
+            <input type="submit" value="Agregar Unidad" className="btn-green rounded-lg" />
           </div>
         </form>
       </div>

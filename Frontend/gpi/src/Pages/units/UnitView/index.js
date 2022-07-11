@@ -37,7 +37,7 @@ export const UnitView = () => {
         </div>
         {!loading ? (
             data.extras.map((extra) => (
-            <ExtraCard key={extra._id} Extra={extra}></ExtraCard>
+            <ExtraCard key={extra._id} extra={extra}></ExtraCard>
           ))
         ) : (
           <p>Cargando</p>

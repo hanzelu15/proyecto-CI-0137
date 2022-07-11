@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { MdOutlineLocationOn } from "react-icons/md";
 import { Link } from 'react-router-dom';
 
 export const ExtraCard = ( {extra} ) => {
-
+    const [color, setColor] = useState([]);
+    useEffect(() => {
+     switch (extra.type) {
+        case "amueblado":
+            setColor("#000");
+            break;
+     
+        default:
+            break;
+     }
+        
+      }, []);
+    console.log("llega", extra);
     return (
         <>
         {

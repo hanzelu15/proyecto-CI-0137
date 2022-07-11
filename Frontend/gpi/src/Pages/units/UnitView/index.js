@@ -24,10 +24,12 @@ export const UnitView = () => {
         setloading(false);
       })
   }, []);
-
+  const query =async (page ,limit)=>{
+    return await getExtrasByUnit(unit._id,page,limit);
+  }
   return (
     <div className="flex flex-col justify-items-center items-center responsive-width-component">
-      <h2 className="text-4xl font-semibold pt-10 items-start">{unit.number}: <ni className="font-normal">Extras</ni></h2>
+      <h2 className="text-4xl font-semibold pt-10 items-start">{unit.number}</h2>
       <UnitInfo unit={unit}></UnitInfo>
       <section className="w-full flex flex-col gap-5"> 
         <div className="flex w-full  justify-between">
@@ -48,7 +50,7 @@ export const UnitView = () => {
           postsPerPage={5}
           totalPosts={data.count}
           setData={setData}
-          query={getExtrasByUnit}
+          query={query}
         ></Pagination>
       </section>
     </div>

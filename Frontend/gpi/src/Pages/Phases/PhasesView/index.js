@@ -23,10 +23,12 @@ export const PhasesView = () => {
       })
   }, []);
 
-
+  const query =async (page ,limit)=>{
+    return await getUnitsByPhase(phase._id,page,limit);
+  }
   return (
     <div className="flex flex-col justify-items-center items-center responsive-width-component">
-      <h2 className="text-4xl font-semibold pt-10 items-start">{phase.name}: <ni className="font-normal">Unidades</ni></h2>
+      <h2 className="text-4xl font-semibold pt-10 items-start">{phase.name}</h2>
       <PhaseInfo phase={phase}></PhaseInfo>
       <section className="w-full flex flex-col gap-5"> 
         <div className="flex w-full  justify-between">
@@ -47,7 +49,7 @@ export const PhasesView = () => {
           postsPerPage={5}
           totalPosts={data.count}
           setData={setData}
-          query={getUnitsByPhase}
+          query={query}
         ></Pagination>
       </section>
     </div>

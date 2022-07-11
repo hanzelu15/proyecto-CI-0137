@@ -20,7 +20,7 @@ export const ExtraCard = ( {extra} ) => {
         <>
         {
             extra &&
-            <Link to ={`/extra/${extra.name}`}
+            <Link to ={`/extra/${extra._id}`}
             state={extra}
 
             className = 'bg-white h-20 w-full rounded-lg flex justify-between items-center shadow-md px-5 hover:bg-gray-200'>

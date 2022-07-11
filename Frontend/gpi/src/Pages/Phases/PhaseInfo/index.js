@@ -3,22 +3,27 @@ import { useForm } from "react-hook-form";
 import { MdDelete, MdModeEdit, MdSave } from "react-icons/md";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import { deletePhase } from "../../../Services/PhaseService";
+import { deletePhase, updatePhase } from "../../../Services/PhaseService";
 import { useAuthStore } from "../../../hooks";
 
 
 export const PhaseInfo = ({ phase }) => {
   const { user } = useAuthStore();
   const [isEditable, setIsEditable] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [phases, setPhases] = useState([]);
   let navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm({ defaultValues: phase });
+  const watchAllFields = watch();
   const handleEdit = async () => {
-    // const response = await updateProject(watchAllFields);
-    // setIsEditable(!isEditable);
-    // if (response.ok) {
-    //   return Swal.fire("Exito!", "Se ha editado el proyecto!", "success");
-    // }
+    const response = await updatePhase(watchAllFields);
+    setIsEditable(!isEditable);
+    if (response.ok) {
+      return Swal.fire("Exito!", "Se ha editado el proyecto!", "success");
+    }
 
     return Swal.fire("Ups!", "No se pudo editar el proyecto!", "error");
   };
@@ -41,12 +46,6 @@ export const PhaseInfo = ({ phase }) => {
   const onSubmit = (data) => {
     //updateProject(data);
   };
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm({ defaultValues: phase });
   return (
     <header className="flex flex-col items-center w-full py-5">
       <div className="flex justify-between flex-col w-full mb-5 items-end" >

@@ -25,3 +25,13 @@ export async function deleteUnit(id) {
     console.error(error);
   }
 }
+export async function updateUnit(data) {
+  try {
+    const response = await gpiAPI.patch(`/unit/update/${data._id}`, {
+      data,
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}

@@ -30,7 +30,7 @@ export const DashboardRoutes = () => {
             <Route path="new-project" element={<CreateProject />} />
             <Route path="project/:name" element={<ProjectView />} />
             <Route path="phase/:name" element={<PhasesView />} />
-            <Route path="extra/:name" element={<ExtrasView />} />
+            <Route path="extra/:id" element={<ExtrasView />} />
             <Route path="perfil" element={<Perfil />} />
             <Route path="new-phase/:project" element={<CreatePhase />} />
             <Route path="new-unit/:phase" element={<CreateUnit />} />

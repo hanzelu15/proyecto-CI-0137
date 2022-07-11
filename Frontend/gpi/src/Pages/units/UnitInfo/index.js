@@ -5,18 +5,27 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { deletePhase } from "../../../Services/PhaseService";
 import { useAuthStore } from "../../../hooks";
+import { deleteUnit, updateUnit } from "../../../Services/UnitService";
 
 export const UnitInfo = ({unit}) => {
   const { user } = useAuthStore();
   const [isEditable, setIsEditable] = useState(false);
   const [loading, setLoading] = useState(true);
   let navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm({ defaultValues: unit });
+  const watchAllFields = watch();
+
   const handleEdit = async () => {
-    // const response = await updateProject(watchAllFields);
-    // setIsEditable(!isEditable);
-    // if (response.ok) {
-    //   return Swal.fire("Exito!", "Se ha editado el proyecto!", "success");
-    // }
+    const response = await updateUnit(watchAllFields);
+    setIsEditable(!isEditable);
+    if (response.ok) {
+      return Swal.fire("Exito!", "Se ha editado el proyecto!", "success");
+    }
 
     return Swal.fire("Ups!", "No se pudo editar la unidad!", "error");
   };
@@ -31,7 +40,7 @@ export const UnitInfo = ({unit}) => {
       cancelButtonText: "No, Cancelar!",
     }).then((result) => {
       if (result.isConfirmed) {
-        deletePhase(unit._id);
+        deleteUnit(unit._id);
         Swal.fire("Borrado!", "Su Unidad fue borrada.", "success");
         navigate(-1);
       }
@@ -41,14 +50,6 @@ export const UnitInfo = ({unit}) => {
   const onSubmit = (data) => {
     //updateProject(data);
   };
-
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm({ defaultValues: unit });
-
   return (
     <header className="flex flex-col items-center w-full py-5">
       <div className="flex justify-between flex-col w-full mb-5 items-end" >

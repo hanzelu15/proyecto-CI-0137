@@ -26,3 +26,14 @@ export async function deletePhase(id) {
     console.error(error);
   }
 }
+
+export async function updatePhase(data) {
+  try {
+    const response = await gpiAPI.patch(`/phase/update/${data._id}`, {
+      data,
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}

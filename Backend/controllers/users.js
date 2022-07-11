@@ -53,7 +53,6 @@ const usersByRole = async (req, res) => {
 const getAllUsers = async (req, res) => {
    // #swagger.tags = ['Users']
   const { id, page, limit } = req.query;
-  console.log("En getUsers controller  ", id);
   const [users, count] = await Promise.all([
     User.find({ _id: {$ne: id}})
       .skip(page * limit || 0)

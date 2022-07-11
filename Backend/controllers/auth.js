@@ -134,7 +134,6 @@ const getTransporter = function () {
 };
 
 const sendRecoveryCodeEmail = async (userEmail, randomToken) => {
-  console.log("Email en send: ", userEmail);
   let transporter = getTransporter();
   
   await transporter.sendMail({
@@ -148,7 +147,6 @@ const sendRecoveryCodeEmail = async (userEmail, randomToken) => {
 
 const passwordRecovery = async (req, res) => {
   // #swagger.tags = ['Users']
-  console.log("En pr : ", req.body.data);
   try {
     const userPayload = req.body;
     const user = await User.findOne({ email: userPayload.data.email, function (err, docs)  {
@@ -157,9 +155,6 @@ const passwordRecovery = async (req, res) => {
           res.status(401).send("Datos no válidos");
           return;
       }
-      else{
-          console.log("Result : ", docs);
-      }
     }
     });
     const randomToken = Math.floor(
@@ -167,7 +162,6 @@ const passwordRecovery = async (req, res) => {
     );
     const code = randomToken.toString();
     await RecoveryCode.deleteOne({userID: user._id});
-    console.log("Random Token : ", code);
     const recoCode = new RecoveryCode({
       userID: user._id,
       code: code,
@@ -178,9 +172,7 @@ const passwordRecovery = async (req, res) => {
       const expirationDate = new Date(
         nowDate.setMinutes(nowDate.getMinutes() + 5)
       );
-      console.log("Date : ", expirationDate);
       const newRecoCode = await RecoveryCode.create({userID: user._id, code: code, expiration: expirationDate});
-      console.log("En pr 3 : ", newRecoCode);
       await sendRecoveryCodeEmail(userPayload.data.email, code);
       return res.json({
         ok: true,
@@ -235,18 +227,13 @@ const passwordChange = async (req, res) => {
 
 const codeCheck = async (req, res) => {
   const code = req.body.data.code;
-  console.log("En codeCheck : ", req.body.data);
   try {
     const  cd = await RecoveryCode.findOne({  code: code  });
     const nowDate = new Date();
     let expired;
-    console.log("Fecha exp: ", cd.expiration);
-    console.log("Fecha actual: ", nowDate);
     if(cd.expiration.getTime() > nowDate.getTime()){
-      console.log("Fecha exp mayor.");
       expired = false;
     } else {
-      console.log("Fecha exp menor.");
       expired = true;
     }
     if (!cd || expired) {
@@ -255,7 +242,6 @@ const codeCheck = async (req, res) => {
         msg: "Username does not exist ",
       });
     }
-    console.log("En codeCheck2 : ", cd);
     return res.status(201).json({
       ok: true,
       cd,
@@ -270,7 +256,6 @@ const codeCheck = async (req, res) => {
 };
 
 const passwordUpate = async (req, res) => {
-  console.log("Password Update", req.body);
   if (req.body.data.password !== undefined) {
     let pass = req.body.data.password;
     req.body.data.password = bcryptjs.hashSync(pass, 8);

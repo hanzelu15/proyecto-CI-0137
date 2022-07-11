@@ -106,9 +106,7 @@ export const PhaseInfo = ({ phase }) => {
               rows={8}
               type="textarea"
               className="p-3 rounded-lg border disabled:border-transparent"
-              defaultValue={
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tincidunt elementum nunc at congue. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris condimentum, "
-              }
+              defaultValue={phase.description}
               disabled={!isEditable}
             />
           </div>

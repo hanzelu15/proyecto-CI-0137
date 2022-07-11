@@ -280,11 +280,9 @@ const passwordUpate = async (req, res) => {
       ok: false,
     });
   }
-  console.log("Despues del hash: ", req.body);
   const updatedUser = await User.findByIdAndUpdate(
     req.body.userID, { password: req.body.data.password }
   );
-  console.log("updatedUser: ", updatedUser);
   if(!updatedUser){
     return res.json({
       ok: false,

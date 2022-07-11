@@ -1,4 +1,4 @@
-import React, { useState, useRef  } from "react";
+import React, { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { MdPerson, MdOutlineEmail, MdLock, MdPhone } from "react-icons/md";
 import { useAuthStore } from "../../hooks";
@@ -6,13 +6,12 @@ import { updateUserData } from "../../Services/UserService.js";
 import Swal from "sweetalert2";
 
 export const Perfil = () => {
-
   const { user } = useAuthStore();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({defaultValues: user});
+  } = useForm({ defaultValues: user });
   const {
     register: register2,
     formState: { errors: errors2 },
@@ -20,7 +19,7 @@ export const Perfil = () => {
     watch,
   } = useForm();
   const onSubmit = (data) => {
-    if(data.password_repeat !== undefined){
+    if (data.password_repeat !== undefined) {
       delete data.password_repeat;
     }
     console.log(data);
@@ -28,21 +27,17 @@ export const Perfil = () => {
     setIsDisabled(!isDisabled);
     setTimeout(() => {
       if (responseValue) {
-        Swal.fire(
-          {
-            icon: 'success',
-            title: 'Bien!',
-            text: 'Actualización de datos exitosa!',
-          }
-        );
+        Swal.fire({
+          icon: "success",
+          title: "Bien!",
+          text: "Actualización de datos exitosa!",
+        });
       } else {
-        Swal.fire(
-          {
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Actualización de datos fallida!',
-          }
-        );
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Actualización de datos fallida!",
+        });
       }
     }, 100);
   };
@@ -59,7 +54,10 @@ export const Perfil = () => {
         >
           Editar
         </button>
-        <form className="w-[375px] flex flex-col" onSubmit={handleSubmit(onSubmit)}>
+        <form
+          className="w-[375px] flex flex-col"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <div className="flex items-center">
             <label htmlFor="floating_name" className="flex items-center">
               {" "}
@@ -69,7 +67,7 @@ export const Perfil = () => {
             <input
               type="name"
               name="floating_name"
-              className="block w-full pl-2 text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none disabled:bg-gray-200    focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className=" w-full text-right p-1 rounded-lg border disabled:border-transparent"
               placeholder=" "
               defaultValue={user.name}
               required
@@ -88,7 +86,7 @@ export const Perfil = () => {
             <input
               type="name"
               name="floating_name"
-              className="block w-full pl-2 text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none disabled:bg-gray-200    focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className=" w-full text-right p-1 rounded-lg border disabled:border-transparent"
               placeholder=" "
               defaultValue={user.email}
               {...register("email", {
@@ -107,7 +105,7 @@ export const Perfil = () => {
             <input
               type="name"
               name="floating_name"
-              className="block w-full pl-2 text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none disabled:bg-gray-200    focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className=" w-full text-right p-1 rounded-lg border disabled:border-transparent"
               placeholder=" "
               defaultValue={user.phone}
               {...register("phone", {
@@ -120,18 +118,22 @@ export const Perfil = () => {
               disabled={isDisabled}
             />
           </div>
-          <div className="flex items-center pl-16 text-lg text-gray-900">
+          <div className="flex justify-end pb-5 text-lg text-gray-900">
+            <p>
             Rol: {user.role}
+
+            </p>
           </div>
           <button
             type="submit"
-            className={`${isDisabled ? "hidden" : ""} self-end  text-white bg-orange-50 hover:bg-orange-100 focus:ring-4 focus:ring-blue-300 font-medium text-sm px-5 py-2.5   focus:outline-none `}
+            className={`${
+              isDisabled ? "hidden" : ""
+            } self-end  text-white bg-orange-50 hover:bg-orange-100 focus:ring-4 focus:ring-blue-300 font-medium text-sm px-5 py-2.5   focus:outline-none `}
           >
             Guardar Cambios
           </button>
         </form>
       </div>
-
 
       <div className=" flex flex-col items-center pt-20">
         <h4 className="mb-5 text-3xl md:text-4xl">Cambiar contraseña</h4>
@@ -183,11 +185,14 @@ export const Perfil = () => {
             )}
           </div>
           <div className="flex justify-end  items-center">
-            <input type="submit" value="Cambiar" className="rounded-lg btn-green" />
+            <input
+              type="submit"
+              value="Cambiar"
+              className="rounded-lg btn-green"
+            />
           </div>
         </form>
       </div>
     </>
   );
 };
-

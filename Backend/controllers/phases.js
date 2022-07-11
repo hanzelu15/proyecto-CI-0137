@@ -27,7 +27,7 @@ const getPhasesByProject = async (req, res) => {
       Phase.find({ project: req.params.idProject })
         .skip(page * limit || 0)
         .limit(limit || 5),
-      Phase.count(),
+      Phase.count({ project: req.params.idProject }),
     ]);
     res.json({
       ok: true,

@@ -60,11 +60,7 @@ const updateProject = async (req, res) => {
 
   const updatedProject = await Project.findByIdAndUpdate(
     req.params.id,
-    req.body.data,
-    {
-      new: true,
-    }
-  );
+    req.body.data );
   res.json({
     ok: true,
     updatedProject,

@@ -7,7 +7,7 @@ import { deletePhase, updatePhase } from "../../../Services/PhaseService";
 import { useAuthStore } from "../../../hooks";
 
 
-export const PhaseInfo = ({ phase }) => {
+export const PhaseInfo = ({ phase, query }) => {
   const { user } = useAuthStore();
   const [isEditable, setIsEditable] = useState(false);
   let navigate = useNavigate();
@@ -18,6 +18,7 @@ export const PhaseInfo = ({ phase }) => {
     formState: { errors },
   } = useForm({ defaultValues: phase });
   const watchAllFields = watch();
+
   const handleEdit = async () => {
     const response = await updatePhase(watchAllFields);
     setIsEditable(!isEditable);
@@ -35,9 +36,10 @@ export const PhaseInfo = ({ phase }) => {
       showCancelButton: true,
       confirmButtonText: "Si, Borrar!",
       cancelButtonText: "No, Cancelar!",
-    }).then((result) => {
+    }).then(async (result)=> {
       if (result.isConfirmed) {
         deletePhase(phase._id);
+        await query(0);
         Swal.fire("Borrado!", "Su Proyecto fue borrado.", "success");
         navigate(-1);
       }

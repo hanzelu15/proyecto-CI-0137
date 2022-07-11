@@ -96,7 +96,7 @@ export const PasswordChange = () => {
             <input
               type="text"
               name="floating_name"
-              className="block w-full pl-2 text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none disabled:bg-gray-200 dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className="block w-full pl-2 text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none disabled:bg-gray-200    focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               defaultValue=""
               required
@@ -107,7 +107,7 @@ export const PasswordChange = () => {
           </div>
           <button
             type="submit"
-            className="self-end mt-4 text-white bg-orange-50 hover:bg-orange-100 focus:ring-4 focus:ring-blue-300 font-medium text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+            className="self-end mt-4 text-white bg-orange-50 hover:bg-orange-100 focus:ring-4 focus:ring-blue-300 font-medium text-sm px-5 py-2.5   focus:outline-none "
           >
             Verificar
           </button>

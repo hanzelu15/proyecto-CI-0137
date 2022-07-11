@@ -23,7 +23,7 @@ const Pagination = ({ postsPerPage, totalPosts, setData, query }) => {
               <button
                 disabled={current === 0}
                 onClick={() => handleClick(current - 1)}
-                className="disabled:bg-slate-100 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none block py-2 px-3 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                className="disabled:bg-slate-100 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none block py-2 px-3 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700     "
               >
                 <span className="sr-only">Previous</span>
                 <svg
@@ -45,7 +45,7 @@ const Pagination = ({ postsPerPage, totalPosts, setData, query }) => {
                 <button
                   disabled={current === number}
                   onClick={() => handleClick(number)}
-                  className="disabled:bg-slate-100 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                  className="disabled:bg-slate-100 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700     "
                 >
                   {number}
                 </button>
@@ -54,7 +54,7 @@ const Pagination = ({ postsPerPage, totalPosts, setData, query }) => {
             <li>
               <button
                 disabled={current === pageNumbers.length - 1}
-                className={`disabled:bg-slate-100 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none block py-2 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
+                className={`disabled:bg-slate-100 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none block py-2 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700     `}
                 onClick={() => handleClick(current + 1)}
               >
                 <span className="sr-only">Next</span>

@@ -19,6 +19,7 @@ export const CreateUnit = () => {
       ...data,
       phase: phase._id,
     };
+    console.log(newUnit);
     const response = await createUnit(newUnit);
     if (response.ok) {
       Swal.fire("Exito!", "Se ha agregado la unidad!", "success");
@@ -66,8 +67,8 @@ export const CreateUnit = () => {
           <div className="relative z-0 w-full mb-14 group">
             <p className="text-xl text-gray-500">Casa terminada</p>
             <select
-              className="bg-transparent border border-gray-300 text-gray-500  text-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              {...register("role", {})}
+              className="bg-transparent border border-gray-300 text-gray-500  text-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5      "
+              {...register("finished", {})}
             >
               <option defaultValue={false} value={false}>
                 {" "}
@@ -79,8 +80,8 @@ export const CreateUnit = () => {
           <div className="relative z-0 w-full mb-14 group">
             <p className="text-xl text-gray-500">Casa entregada</p>
             <select
-              className="bg-transparent border border-gray-300 text-gray-500  text-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              {...register("role", {})}
+              className="bg-transparent border border-gray-300 text-gray-500  text-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5      "
+              {...register("delivered", {})}
             >
               <option defaultValue={false} value={false}>
                 {" "}

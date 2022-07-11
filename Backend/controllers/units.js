@@ -55,7 +55,7 @@ const getUnitsByPhase = async (req, res) => {
        Unit.find({ phase: req.params.idPhase })
         .skip(page * limit || 0)
         .limit(limit || 5),
-        Unit.count(),
+        Unit.count({ phase: req.params.idPhase }),
     ]);
     res.json({
       ok: true,

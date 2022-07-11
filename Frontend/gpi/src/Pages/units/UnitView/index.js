@@ -33,7 +33,7 @@ export const UnitView = () => {
       <UnitInfo unit={unit} query={query}></UnitInfo>
       <section className="w-full flex flex-col gap-5"> 
         <div className="flex w-full  justify-between">
-          <h4 className="text-3xl"> </h4>
+          <h4 className="text-3xl font-normal"> Extras: </h4>
           <Link to={`/new-extra/${unit.number}`} state={unit} className={`${user.role!=="ADMIN" ? "hidden" : ""} btn-green rounded-lg h-fit"`}>Agregar Extra</Link>
           
         </div>

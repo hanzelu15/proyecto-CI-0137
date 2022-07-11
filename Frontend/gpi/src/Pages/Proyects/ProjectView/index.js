@@ -38,7 +38,7 @@ export const ProjectView = () => {
       <ProjectInfo project={project} manager={manager} query={query}></ProjectInfo>
       <section className="w-full flex flex-col gap-5">
         <div className="flex w-full  justify-between">
-          <h4 className="text-3xl"> </h4>
+          <h4 className="text-3xl font-normal"> Fases: </h4>
           <Link to={`/new-phase/${project.name}`} state={project} className={`${user.role!=="ADMIN" ? "hidden" : ""} btn-green rounded-lg h-fit"`}>Agregar fase</Link>
         </div>
         {!loading ? (

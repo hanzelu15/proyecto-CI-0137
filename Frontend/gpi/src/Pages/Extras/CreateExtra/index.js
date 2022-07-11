@@ -53,11 +53,11 @@ export const CreateExtra = () => {
               {...register("status")}
             >
               {" "}
-              <option defaultValue={true} value="pending">
+              <option defaultValue={true} value="Pendiente">
                 Pendiente
               </option>
-              <option value="inProgress">En progreso</option>
-              <option value="finish">Terminado</option>
+              <option value="En Progreso">En progreso</option>
+              <option value="Terminado">Terminado</option>
             </select>
           </div>
 

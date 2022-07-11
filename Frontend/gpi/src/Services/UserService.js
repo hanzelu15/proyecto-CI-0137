@@ -10,6 +10,7 @@ export async function getUserById(id) {
 }
 export async function updateUserData(data, id) {
   try {
+    
     const response = await gpiAPI.patch(`/user/update/${id}`, { data });
     return response.data.ok;
   } catch (error) {

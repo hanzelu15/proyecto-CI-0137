@@ -49,7 +49,7 @@ export const CreateExtra = () => {
           <div className="relative z-0 w-full mb-10 group">
             <p className="text-xl text-gray-500">Estado de Extra</p>
             <select
-              className="bg-transparent border border-gray-300 text-gray-500  text-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-transparent border border-gray-300 text-gray-500  text-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5      "
               {...register("status")}
             >
               {" "}
@@ -64,7 +64,7 @@ export const CreateExtra = () => {
           <div className="relative z-0 w-full mb-10 group">
             <p className="text-xl text-gray-500">Tipo de Extra</p>
             <select
-              className="bg-transparent border border-gray-300 text-gray-500  text-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-transparent border border-gray-300 text-gray-500  text-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5      "
               {...register("type", {
                 required: "Debe especificar un rol",
               })}
@@ -82,7 +82,7 @@ export const CreateExtra = () => {
             <textarea
               type="textarea"
               name="description"
-              className="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-2 border-gray-300 appearance-none    focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required
               rows={6}

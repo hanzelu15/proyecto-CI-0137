@@ -54,7 +54,7 @@ export const Perfil = () => {
       <div className=" w-[375px] h-full flex flex-col items-center m-auto">
         <h3 className="text-4xl py-5">Informacion Personal</h3>
         <button
-          className=" self-end tracking-wide text-[22px] rounded-lg text-white w-fit bg-orange-50 hover:bg-orange-100 focus:ring-4 focus:ring-blue-300 font-medium text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+          className=" self-end tracking-wide text-[22px] rounded-lg text-white w-fit bg-orange-50 hover:bg-orange-100 focus:ring-4 focus:ring-blue-300 font-medium text-sm px-5 py-2.5   focus:outline-none "
           onClick={() => setIsDisabled(!isDisabled)}
         >
           Editar
@@ -69,7 +69,7 @@ export const Perfil = () => {
             <input
               type="name"
               name="floating_name"
-              className="block w-full pl-2 text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none disabled:bg-gray-200 dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className="block w-full pl-2 text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none disabled:bg-gray-200    focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               defaultValue={user.name}
               required
@@ -88,7 +88,7 @@ export const Perfil = () => {
             <input
               type="name"
               name="floating_name"
-              className="block w-full pl-2 text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none disabled:bg-gray-200 dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className="block w-full pl-2 text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none disabled:bg-gray-200    focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               defaultValue={user.email}
               {...register("email", {
@@ -107,7 +107,7 @@ export const Perfil = () => {
             <input
               type="name"
               name="floating_name"
-              className="block w-full pl-2 text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none disabled:bg-gray-200 dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className="block w-full pl-2 text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none disabled:bg-gray-200    focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               defaultValue={user.phone}
               {...register("phone", {
@@ -125,7 +125,7 @@ export const Perfil = () => {
           </div>
           <button
             type="submit"
-            className={`${isDisabled ? "hidden" : ""} self-end  text-white bg-orange-50 hover:bg-orange-100 focus:ring-4 focus:ring-blue-300 font-medium text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800`}
+            className={`${isDisabled ? "hidden" : ""} self-end  text-white bg-orange-50 hover:bg-orange-100 focus:ring-4 focus:ring-blue-300 font-medium text-sm px-5 py-2.5   focus:outline-none `}
           >
             Guardar Cambios
           </button>

@@ -45,8 +45,8 @@ export const Register = () => {
   }, [errorMessage]);
   return (
     <>
-      <div className=" flex flex-col items-center  pt-20">
-        <div className="mb-14">
+      <div className=" flex flex-col items-center  pt-20 pb-[75px]">
+        <div className="mb-10">
           <img src={logo} className="w-[300px] md:w-[375px]" alt="Logo GPI" />
         </div>
         <h4 className="mb-20 text-3xl md:text-4xl">Registrarse</h4>
@@ -57,7 +57,7 @@ export const Register = () => {
           className="w[300px] md:w-[375px]"
         >
           {/* NAME */}
-          <div className="relative z-0 w-full mb-14 group">
+          <div className="relative z-0 w-full mb-10 group">
             <input
               type="text"
               name="name"
@@ -88,7 +88,7 @@ export const Register = () => {
 
           </div>
           {/* EMAIL */}
-          <div className="relative z-0 w-full mb-14 group">
+          <div className="relative z-0 w-full mb-10 group">
             <input
               type="email"
               name="email"
@@ -111,7 +111,7 @@ export const Register = () => {
             )}
           </div>
           {/* PHONE */}
-          <div className="relative z-0 w-full mb-14 group">
+          <div className="relative z-0 w-full mb-10 group">
             <input
               type="text"
               name="phone"
@@ -132,7 +132,7 @@ export const Register = () => {
             )}
           </div>
           {/* PASSWORD */}
-          <div className="relative z-0 w-full mb-14 group">
+          <div className="relative z-0 w-full mb-10 group">
             <input
               type="password"
               name="password"
@@ -155,7 +155,7 @@ export const Register = () => {
             )}
           </div>
           {/* REPEAT PASSWORD */}
-          <div className="relative z-0 w-full mb-14 group">
+          <div className="relative z-0 w-full mb-10 group">
             <input
               type="password"
               name="password_repeat"

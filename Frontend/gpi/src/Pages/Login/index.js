@@ -31,7 +31,7 @@ export const Login = () => {
   };
   return (
     <>
-      <div className=" w-full flex flex-col items-center  pt-20">
+      <div className=" w-full flex flex-col items-center  pt-20 pb-[75px]">
         <div className="mb-14">
           <img src={logo} className="w-[300px] md:w-[375px]" alt="Logo GPI" />
         </div>
@@ -50,7 +50,7 @@ export const Login = () => {
                 required: "Debe especificar un correo",
               })}
             />
-            <label className="flex items-center peer-focus:font-medium absolute text-xl text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-8 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8">
+            <label className="flex items-center peer-focus:font-medium absolute text-xl text-gray-500  duration-300 transform -translate-y-8 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus: peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8">
               <MdOutlineEmail className="inline-block mr-1" />
               Email
             </label>
@@ -68,7 +68,7 @@ export const Login = () => {
                 required: "Debe especificar una contraseña",
               })}
             />
-            <label className="flex items-center peer-focus:font-medium absolute text-xl text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-8 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8">
+            <label className="flex items-center peer-focus:font-medium absolute text-xl text-gray-500  duration-300 transform -translate-y-8 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus: peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8">
               <MdLock className="inline-block mr-1" />
               Password
             </label>

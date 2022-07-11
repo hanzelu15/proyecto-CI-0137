@@ -21,7 +21,7 @@ export const AppRouter = () => {
   }
   return (
     <>
-      <div className="h-screen">
+      <div className="">
         <Routes>
           {status === "not-authenticated" ? (
             <>
